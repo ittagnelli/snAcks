@@ -1,0 +1,19 @@
+{
+  "cwd": "/Users/andrehackintoshbook/Desktop/appagnelli",
+  "type": [
+    "web"
+  ],
+  "name": "My App",
+  "framework": "svelte",
+  "template": "tabs",
+  "bundler": "vite",
+  "cssPreProcessor": false,
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkTheme": true,
+    "iconFonts": true,
+    "fillBars": true
+  },
+  "customBuild": false
+}
