@@ -1,31 +1,74 @@
-# snAcks
-Applicazione per la prenotazione della colazione delle ore 10:00
+# My App
+
+## Framework7 CLI Options
+
+Framework7 app created with following options:
+
+```
+{
+  "cwd": "/Users/andrehackintoshbook/Desktop/appagnelli",
+  "type": [
+    "web"
+  ],
+  "name": "My App",
+  "framework": "svelte",
+  "template": "tabs",
+  "bundler": "vite",
+  "cssPreProcessor": false,
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkTheme": true,
+    "iconFonts": true,
+    "fillBars": true
+  },
+  "customBuild": false
+}
+```
+
+## Install Dependencies
+
+First of all we need to install dependencies, run in terminal
+```
+npm install
+```
+
+## NPM Scripts
+
+* 🔥 `start` - run development server
+* 🔧 `dev` - run development server
+* 🔧 `build` - build web app for production
+
+## Vite
+
+There is a [Vite](https://vitejs.dev) bundler setup. It compiles and bundles all "front-end" resources. You should work only with files located in `/src` folder. Vite config located in `vite.config.js`.
+## Assets
+
+Assets (icons, splash screens) source images located in `assets-src` folder. To generate your own icons and splash screen images, you will need to replace all assets in this directory with your own images (pay attention to image size and format), and run the following command in the project directory:
+
+```
+framework7 assets
+```
+
+Or launch UI where you will be able to change icons and splash screens:
+
+```
+framework7 assets --ui
+```
 
 
-## Requisiti
 
-Sviluppare un'applicazione mobile per la prenotazione dell'acquisto della merenda nell'intervallo delle ore 10.00.
-L'applicazione ha i seguenti requisiti minimi:
+## Documentation & Resources
 
-- supportare le piattaforme iOS e Android
-- richiedere il login con l'account istituzionale Agnelli
-- su indicazione dell'utente il login può rimanere memorizzato per 7 giorni
-- il giorno X entro le ore 13.50 permettere la prenotazione della merenda per i giorni  da X+1 a  X+3 
-- ogni studente può prenotare al massimo 2 merende per ogni giorno
-- permettere la cancellazione di una prenotazione per il giorno X entro le ore 13.50 del giorno X-1
-- fornire uno storico delle prenotazione negli ultimi 7 giorni
-- fornire una sezione di amministrazione (uno o più login definiti a livello sviluppo) in cui venga visualizzato:
-    - il numero complessivo di merende prenotate per i giorni da X+1 a X+3
-    - il numero complessivo di merende prenotatre suddiviso per categoria di merenda per i giorni da X+1 a X+3
-- L'applicazione deve visualizzare uno splashscreen con il logo ATS e applicativo
+* [Framework7 Core Documentation](https://framework7.io/docs/)
 
 
-### Altri requisiti di sistema:
-- il sistema deve essere sviluppato con un'architettura serverless
-- i dati delle prenotazioni delle merende devono essere memorizzate in un DB
-- deve essere disponibile un manuale utente realizzato in HTML per la pubblicazione sul sito della scuola
-- Il sistema alle ore 13.50, a chiusura delle prenotazioni, deve inviare un email ad una lista di account pre-definita con:
-    - il numero complessivo di merende prenotate per i giorni da X+1 a X+3
-    - il numero complessivo di merende prenotatre suddiviso per categoria di merenda per i giorni da X+1 a X+3
-- L'applicazione deve avere un nome ed un logo chiaramente identificabili
-- L'applicazione deve essere sviluppata usando tecnologie Web
+* [Framework7 Svelte Documentation](https://framework7.io/svelte/)
+* [Framework7 Icons Reference](https://framework7.io/icons/)
+* [Community Forum](https://forum.framework7.io)
+
+## Support Framework7
+
+Love Framework7? Support project by donating or pledging on:
+- Patreon: https://patreon.com/framework7
+- OpenCollective: https://opencollective.com/framework7
