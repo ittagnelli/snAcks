@@ -31,6 +31,26 @@
           </Row>
         </Block>
   </Card>
+  <div align="center">
+  <List>
+    <ListItem checkbox title={tomorrow} name="tomorrow" id="tomorrow"></ListItem>
+    <ListItem checkbox title={totomorrow} name="totomorrow" id="totomorrow"></ListItem>
+    <ListItem checkbox title={date} name="date" id="date"></ListItem>
+  </List>
+  </div>
+  <Block strong>
+    <Row tag="p">
+      <Col tag="span">
+        
+      </Col>
+      <Col tag="span">
+        <Button raised fill>Ordina</Button>
+      </Col>
+      <Col tag="span">
+        
+      </Col>
+    </Row>
+  </Block>
 </Page>
 <script>
   import {
@@ -52,11 +72,16 @@
     Col,
     Button
   } from 'framework7-svelte';
-  // Import the functions you need from the SDKs you need
+  
+var today = new Date();
+
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+3);
+var tomorrow = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1);
+var totomorrow = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+2);
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
+console.log(document.getElementsByName("tomorrow").checked) //non funzionante
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAaV0qTUzXQJzlD21vkTz88MUL1XxNt9qE",
@@ -66,7 +91,6 @@ const firebaseConfig = {
   messagingSenderId: "1087579451700",
   appId: "1:1087579451700:web:f6745321ca2eb1cceb3561"
 };
-
 // Initialize Firebase
 const firestore_app = initializeApp(firebaseConfig);
 </script>
