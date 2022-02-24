@@ -1,27 +1,5 @@
 <App { ...f7params } themeDark>
 
-  <!-- Left panel with cover effect-->
-  <!-- <Panel left cover themeDark>
-    <View>
-      <Page>
-        <Navbar title="Left Panel"/>
-        <Block>Left panel content goes here</Block>
-      </Page>
-    </View>
-  </Panel>
- -->
-
-  <!-- Right panel with reveal effect-->
-  <!-- <Panel right reveal themeDark>
-    <View>
-      <Page>
-        <Navbar title="Right Panel"/>
-        <Block>Right panel content goes here</Block>
-      </Page>
-    </View>
-  </Panel> -->
-
-
 {#if $user_auth == "false"}
   <View main class="safe-areas" url="/login/" />
 {:else}
@@ -36,25 +14,6 @@
   <View id="view-ordini" name="settings" tab url="/ordini/" />
 </Views>
 {/if}
-
-
-  <!-- Popup -->
-  <!-- <Popup id="my-popup">
-    <View>
-      <Page>
-        <Navbar title="Popup">
-          <NavRight>
-            <Link popupClose>Close</Link>
-          </NavRight>
-        </Navbar>
-        <Block>
-          <p>Popup content goes here.</p>
-        </Block>
-      </Page>
-    </View>
-  </Popup> -->
-
-
 </App>
 
 <script>
