@@ -1,14 +1,14 @@
 {
-  "name": "my-app",
+  "name": "snacks",
   "private": true,
   "version": "1.0.0",
-  "description": "My App",
+  "description": "snAcks",
   "repository": "",
   "license": "UNLICENSED",
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development vite",
-    "build": "cross-env NODE_ENV=production vite build",
+    "build": "cross-env NODE_ENV=production vite build && npx workbox generateSW workbox-config.js",
     "postinstall": "cpy ./node_modules/framework7-icons/fonts/*.* ./src/fonts/ && cpy ./node_modules/material-icons/iconfont/*.* ./src/fonts/"
   },
   "browserslist": [
@@ -21,7 +21,6 @@
   ],
   "dependencies": {
     "dom7": "^3.0.0",
-    "firebase": "^9.6.7",
     "framework7": "^6.3.16",
     "framework7-icons": "^5.0.5",
     "framework7-svelte": "^6.3.16",
@@ -35,6 +34,7 @@
     "cpy-cli": "^3.1.1",
     "cross-env": "^7.0.3",
     "postcss-preset-env": "^6.7.1",
-    "vite": "^2.8.4"
+    "vite": "^2.8.4",
+    "workbox-cli": "^6.5.0"
   }
 }

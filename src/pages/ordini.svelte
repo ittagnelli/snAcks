@@ -1,6 +1,6 @@
-<Page name="storico">
-  <Navbar title="Storico" />
-  <h1>Qui ci sarà lo STORICO</h1>
+<Page name="ordini">
+  <Navbar title="Ordini" />
+  <h1>Qui ci saranno gli ORDINI</h1>
 </Page>
 
 <script>
