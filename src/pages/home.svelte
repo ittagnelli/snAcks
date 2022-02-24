@@ -89,6 +89,10 @@
       <p class="cardtitle">Salati</p>
       <img class="imgcard" src="focaccina.png" width="200px" alt="salato"/>
     </span>
+<<<<<<< HEAD
+    
+=======
+>>>>>>> main
         <Block strong class="text-align-center">
           <Row>
             <Col>
@@ -102,6 +106,10 @@
       <p class="cardtitle">Dolci</p>
       <img class="imgcard" src="crossaint.png" width="200px" alt="dolce"/>
     </span>
+<<<<<<< HEAD
+    
+=======
+>>>>>>> main
         <Block strong class="text-align-center">
           <Row>
             <Col>
@@ -110,7 +118,7 @@
           </Row>
         </Block>
   </Card>
-  <div align="center">
+  <div class="nomargine" align="center">
   <List>
     <ListItem checkbox title={tomorrow} name="tomorrow" id="tomorrow"></ListItem>
     <ListItem checkbox title={totomorrow} name="totomorrow" id="totomorrow"></ListItem>
