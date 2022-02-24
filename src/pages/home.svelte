@@ -1,14 +1,98 @@
-<svelte:head>
+<!-- <Page name="home">
+  <Navbar large sliding={false}>
+    <NavLeft>
+      <Link iconIos="f7:menu" iconAurora="f7:menu" iconMd="material:menu" panelOpen="left" />
+    </NavLeft>
+    <NavTitle sliding>snAcks</NavTitle>
+    <NavRight>
+      <Link iconIos="f7:menu" iconAurora="f7:menu" iconMd="material:menu" panelOpen="right" />
+    </NavRight>
+    <NavTitleLarge>snAcks</NavTitleLarge>
+  </Navbar>
 
-</svelte:head>
+  <Block strong>
+    <p>This is an example of tabs-layout application. The main point of such tabbed layout is that each tab contains independent view with its own routing and navigation.</p>
+
+    <p>Each tab/view may have different layout, different navbar type (dynamic, fixed or static) or without navbar like this tab.</p>
+  </Block>
+
+  <BlockTitle>Navigation</BlockTitle>
+  <List>
+    <ListItem link="/about/" title="About"/>
+    <ListItem link="/form/" title="Form"/>
+  </List>
+
+  <BlockTitle>Modals</BlockTitle>
+  <Block strong>
+    <Row>
+      <Col width="50">
+        <Button fill raised popupOpen="#my-popup">Popup</Button>
+      </Col>
+      <Col width="50">
+        <Button fill raised loginScreenOpen="#my-login-screen">Login Screen</Button>
+      </Col>
+    </Row>
+  </Block>
+
+  <BlockTitle>Panels</BlockTitle>
+  <Block strong>
+    <Row>
+      <Col width="50">
+        <Button fill raised panelOpen="left">Left Panel</Button>
+      </Col>
+      <Col width="50">
+        <Button fill raised panelOpen="right">Right Panel</Button>
+      </Col>
+    </Row>
+  </Block>
+
+  <List>
+    <ListItem
+      title="Dynamic (Component) Route"
+      link="/dynamic-route/blog/45/post/125/?foo=bar#about"
+    />
+    <ListItem
+      title="Default Route (404)"
+      link="/load-something-that-doesnt-exist/"
+    />
+    <ListItem
+      title="Request Data & Load"
+      link="/request-and-load/user/123456/"
+    />
+  </List>
+</Page>
+<script>
+  import {
+    Page,
+    Navbar,
+    NavLeft,
+    NavTitle,
+    NavTitleLarge,
+    NavRight,
+    Link,
+    Toolbar,
+    Block,
+    BlockTitle,
+    List,
+    ListItem,
+    Row,
+    Col,
+    Button
+  } from 'framework7-svelte';
+</script> -->
+
+
 <Page name="home">
   <Navbar title="snAcks" />
   <Card>
     <span slot="header">      
       <p class="cardtitle">Salati</p>
-      <img class="imgcard" src="focaccina.png" width="200px" alt="fuck ios"/>
+      <img class="imgcard" src="focaccina.png" width="200px" alt="salato"/>
     </span>
+<<<<<<< HEAD
     
+=======
+>>>>>>> main
         <Block strong class="text-align-center">
           <Row>
             <Col>
@@ -20,9 +104,12 @@
   <Card>
     <span slot="header">      
       <p class="cardtitle">Dolci</p>
-      <img class="imgcard" src="crossaint.png" alt="fuck ios"/>
+      <img class="imgcard" src="crossaint.png" width="200px" alt="dolce"/>
     </span>
+<<<<<<< HEAD
     
+=======
+>>>>>>> main
         <Block strong class="text-align-center">
           <Row>
             <Col>
@@ -52,6 +139,7 @@
     </Row>
   </Block>
 </Page>
+
 <script>
   import {
     Page,
@@ -78,19 +166,5 @@ var today = new Date();
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+3);
 var tomorrow = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1);
 var totomorrow = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+2);
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-console.log(document.getElementsByName("tomorrow").checked) //non funzionante
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAaV0qTUzXQJzlD21vkTz88MUL1XxNt9qE",
-  authDomain: "prova-governativa.firebaseapp.com",
-  projectId: "prova-governativa",
-  storageBucket: "prova-governativa.appspot.com",
-  messagingSenderId: "1087579451700",
-  appId: "1:1087579451700:web:f6745321ca2eb1cceb3561"
-};
-// Initialize Firebase
-const firestore_app = initializeApp(firebaseConfig);
+
 </script>
