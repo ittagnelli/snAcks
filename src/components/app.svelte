@@ -17,9 +17,10 @@
     <View id="view-storico" name="storico" tab url="/storico/" />
 
     <!-- Settings View -->
-    <View id="view-settings" name="settings" tab url="/settings/" />
+    <View id="view-settings" name="ordini" tab url="/ordini/" />
 
   </Views>
+
 
 
   

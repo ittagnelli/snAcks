@@ -1,8 +1,6 @@
 /* Invert navigation bars to fill style */
 html,
-body{
-  position: fixed;
-}
+
 :root,
 :root.theme-dark,
 :root .theme-dark {
@@ -64,4 +62,3 @@ body{
   --f7-navbar-large-title-text-color: #fff;
 }
 
-/* Your app custom styles here */

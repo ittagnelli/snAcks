@@ -8,7 +8,7 @@
       <p class="cardtitle">Salati</p>
       <img class="imgcard" src="focaccina.png" width="200px" alt="fuck ios"/>
     </span>
-    <span slot="content">Descrizione</span>
+    
         <Block strong class="text-align-center">
           <Row>
             <Col>
@@ -22,7 +22,7 @@
       <p class="cardtitle">Dolci</p>
       <img class="imgcard" src="crossaint.png" alt="fuck ios"/>
     </span>
-    <span slot="content">Descrizione</span>
+    
         <Block strong class="text-align-center">
           <Row>
             <Col>
@@ -31,7 +31,7 @@
           </Row>
         </Block>
   </Card>
-  <div align="center">
+  <div class="nomargine" align="center">
   <List>
     <ListItem checkbox title={tomorrow} name="tomorrow" id="tomorrow"></ListItem>
     <ListItem checkbox title={totomorrow} name="totomorrow" id="totomorrow"></ListItem>
