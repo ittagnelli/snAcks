@@ -1,9 +1,9 @@
 {
-  "cwd": "/Users/andrehackintoshbook/Desktop/appagnelli",
+  "cwd": "/home/antonio/tmp/snAcks",
   "type": [
-    "web"
+    "pwa"
   ],
-  "name": "My App",
+  "name": "snAcks",
   "framework": "svelte",
   "template": "tabs",
   "bundler": "vite",
@@ -13,7 +13,7 @@
     "color": "#007aff",
     "darkTheme": true,
     "iconFonts": true,
-    "fillBars": true
+    "fillBars": false
   },
   "customBuild": false
 }
