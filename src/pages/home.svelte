@@ -89,10 +89,6 @@
       <p class="cardtitle">Salati</p>
       <img class="imgcard" src="focaccina.png" width="200px" alt="salato"/>
     </span>
-<<<<<<< HEAD
-    
-=======
->>>>>>> main
         <Block strong class="text-align-center">
           <Row>
             <Col>
@@ -106,10 +102,6 @@
       <p class="cardtitle">Dolci</p>
       <img class="imgcard" src="crossaint.png" width="200px" alt="dolce"/>
     </span>
-<<<<<<< HEAD
-    
-=======
->>>>>>> main
         <Block strong class="text-align-center">
           <Row>
             <Col>
