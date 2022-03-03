@@ -1,11 +1,11 @@
 {
-  "cwd": "/home/antonio/tmp/snAcks",
+  "cwd": "/Users/andrehackintoshbook/Desktop/snAckscapacitor",
   "type": [
-    "pwa"
+    "capacitor"
   ],
   "name": "snAcks",
   "framework": "svelte",
-  "template": "tabs",
+  "template": "blank",
   "bundler": "vite",
   "cssPreProcessor": false,
   "theming": {
@@ -15,5 +15,12 @@
     "iconFonts": true,
     "fillBars": false
   },
-  "customBuild": false
+  "customBuild": false,
+  "pkg": "io.ats.snacks",
+  "capacitor": {
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  }
 }
