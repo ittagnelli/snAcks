@@ -3,12 +3,18 @@
   <List>
     <ListButton onClick={signIn}>Sign In</ListButton>
   </List>
-  <BlockFooter>Some text about login information.<br />Lorem ipsum dolor sit amet, consectetur adipiscing elit.</BlockFooter>
+  {#if loading === "true"}
+  <div align="center">
+    <Preloader></Preloader>
+  </div>
+  {/if}
+  <BlockFooter>Premi il pulsante accedi per accedere con il tuo account istituzionale all'app di snAcks, qualsiasi altro account non sarà accettato</BlockFooter>
+
 </Page>
 
 <script>
   import { onMount } from 'svelte'; 
-  import {f7, Page, LoginScreenTitle, List, ListInput, ListButton, BlockFooter} from 'framework7-svelte';
+  import {f7, Page, LoginScreenTitle, List, ListInput, ListButton, BlockFooter, Preloader} from 'framework7-svelte';
   
   import { getAuth, signInWithPopup, GoogleAuthProvider,signOut, signInWithRedirect, getRedirectResult } from "firebase/auth";
   import { firebase_app } from '../js/firebase_config.js';
@@ -16,9 +22,9 @@
   import { create_logger } from '../js/logger';
   let provider = null;
   let auth = null;
-
+  let loading=localStorage.getItem('signprogress');
   const log = create_logger("login.svelte");
-
+  
   // import { user_login, user_logout } from '../components/Firebase.svelte';
   // import { user_auth } from '../components/user_store.svelte';
   // import { onMount } from 'svelte';
@@ -59,6 +65,7 @@
           $user_profile = user; 
           $user_authenticated = true;
         }  
+        localStorage.setItem('signprogress', false);
       }).catch((error) => {
         log.error("MIO ERROR");
         log.error(error);
@@ -71,6 +78,7 @@
   async function signIn() {
     // signInWithPopup(auth, provider)
     signInWithRedirect(auth, provider);
+    localStorage.setItem('signprogress', true);
       // .then(async function (result)  {
       //   log.info("SONO ENTRATO");
       //   const credential = GoogleAuthProvider.credentialFromResult(result);
