@@ -1,6 +1,6 @@
 <App { ...f7params } themeDark>
 
-  {#if $user_auth == "false"}
+  {#if $user_authenticated == false}
     <View main class="safe-areas" url="/login/" />
   {:else}
   <Views tabs class="safe-areas">
@@ -18,7 +18,7 @@
 <script>
   import { onMount } from 'svelte';
   import { getDevice }  from 'framework7/lite-bundle';
-  import { user_auth } from './user_store.svelte';
+  
   import {
     f7,
     f7ready,
@@ -31,7 +31,12 @@
 
   import capacitorApp from '../js/capacitor-app';
   import routes from '../js/routes';
-  import store from '../js/store';
+
+  import { user_profile, user_auth, user_authenticated } from '../js/auth_store.js';
+
+
+  let provider = null;
+  let auth = null;
 
   const device = getDevice();
   // Framework7 Parameters
@@ -41,8 +46,6 @@
 
 
     id: 'io.ats.snacks', // App bundle ID
-    // App store
-    store: store,
     // App routes
     routes: routes,
 
