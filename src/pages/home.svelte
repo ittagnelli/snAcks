@@ -8,7 +8,7 @@
         <Block strong class="text-align-center">
           <Row>
             <Col>
-              <!-- <Stepper fill value={0} min={0} max={2} step={1} autorepeat={false} wraps={false} decimalPoint={2}></Stepper> -->
+             <Stepper fill value={0} min={0} max={2} step={1} autorepeat={false} wraps={false} decimalPoint={2}></Stepper> 
             </Col>
           </Row>
         </Block>
@@ -21,7 +21,7 @@
         <Block strong class="text-align-center">
           <Row>
             <Col>
-              <!-- <Stepper fill value={0} min={0} max={2} step={1} autorepeat={false} wraps={false} decimalPoint={2}></Stepper> -->
+           <Stepper fill value={0} min={0} max={2} step={1} autorepeat={false} wraps={false} decimalPoint={2}></Stepper> 
             </Col>
           </Row>
         </Block>

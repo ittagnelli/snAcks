@@ -33,7 +33,7 @@
   import capacitorApp from '../js/capacitor-app';
   import routes from '../js/routes';
   import { user_authenticated } from '../js/snacks_store.js';
-
+  import store from '../js/store'
   let provider = null;
   let auth = null;
   const device = getDevice();
@@ -43,6 +43,7 @@
     theme: 'auto', // Automatic theme detection
     id: 'io.ats.snacks', // App bundle ID
     routes: routes,
+    store:store,
     input: {
       scrollIntoViewOnFocus: device.capacitor,
       scrollIntoViewCentered: device.capacitor,
