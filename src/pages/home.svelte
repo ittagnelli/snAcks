@@ -8,7 +8,7 @@
         <Block strong class="text-align-center">
           <Row>
             <Col>
-              <Stepper fill value={0} min={0} max={2} step={1} autorepeat={false} wraps={false} decimalPoint={2}></Stepper>
+              <!-- <Stepper fill value={0} min={0} max={2} step={1} autorepeat={false} wraps={false} decimalPoint={2}></Stepper> -->
             </Col>
           </Row>
         </Block>
@@ -21,7 +21,7 @@
         <Block strong class="text-align-center">
           <Row>
             <Col>
-              <Stepper fill value={0} min={0} max={2} step={1} autorepeat={false} wraps={false} decimalPoint={2}></Stepper>
+              <!-- <Stepper fill value={0} min={0} max={2} step={1} autorepeat={false} wraps={false} decimalPoint={2}></Stepper> -->
             </Col>
           </Row>
         </Block>
@@ -39,7 +39,7 @@
         
       </Col>
       <Col tag="span">
-        <Button raised fill>Ordina</Button>
+        <Button raised fill onClick={ordina}>Ordina</Button>
       </Col>
       <Col tag="span">
         
@@ -69,10 +69,29 @@
     Button
   } from 'framework7-svelte';
 
-  
-var today = new Date();
+  import { user_email, user_authenticated } from '../js/snacks_store.js';
+  import { getAuth, GoogleAuthProvider,signOut, signInWithRedirect, getRedirectResult } from "firebase/auth";
 
-var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+3);
-var tomorrow = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1);
-var totomorrow = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+2);
+  export let f7router; // this is just to avoid a warning
+  export let f7route;
+
+  let provider = new GoogleAuthProvider();
+  provider.setCustomParameters({
+    hd: 'istitutoagnelli.it'
+  });    
+  let auth = getAuth();
+  
+  var today = new Date();
+
+  async function ordina() {
+    console.log("LOGOUT");
+    // console.log(auth);
+    // await signOut(auth);
+    // $user_authenticated = "false";  
+    // f7router.navigate('/');
+  }
+
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+3);
+  var tomorrow = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1);
+  var totomorrow = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+2);
 </script>

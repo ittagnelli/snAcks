@@ -11,7 +11,7 @@ export function create_logger(namespace) {
     function _log(level, mex) {
         if (DEBUG) {
             const timestamp = new Date().toISOString();
-            console.log(`%c ${timestamp}-[${namespace}]-${level}-${mex}`, `color: ${level2color[level]}; font-weight: bold;`);
+            console.log(`%c ${timestamp}-[${namespace}]-${level}:::${mex}`, `color: ${level2color[level]}; font-weight: bold;`);
         }
     }
 

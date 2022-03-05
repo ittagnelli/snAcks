@@ -1,123 +1,69 @@
 <Page noToolbar noNavbar noSwipeback loginScreen>
-  <LoginScreenTitle>snAcks</LoginScreenTitle>
-  <List>
-    <ListButton onClick={signIn}>Sign In</ListButton>
-  </List>
-  {#if loading === "true"}
-  <div align="center">
-    <Preloader></Preloader>
+  <div class="col" align="center">
+    <img src="snacks.jpg" alt="snAcks">
   </div>
-  {/if}
-  <BlockFooter>Premi il pulsante accedi per accedere con il tuo account istituzionale all'app di snAcks, qualsiasi altro account non sarà accettato</BlockFooter>
-
+  <Block>
+    <Row>
+      <Col></Col>
+      <Col>
+        <Button fill preloader loading={$user_login_progress == "true"} onClick={signIn} round large>Login</Button>
+      </Col>
+      <Col></Col>
+    </Row>
+  </Block>
+  <Block>
+    <BlockFooter>Per favore effettua il login a snAcks con il tuo account istituzionale</BlockFooter>
+  </Block>
 </Page>
 
 <script>
   import { onMount } from 'svelte'; 
-  import {f7, Page, LoginScreenTitle, List, ListInput, ListButton, BlockFooter, Preloader} from 'framework7-svelte';
-  
-  import { getAuth, signInWithPopup, GoogleAuthProvider,signOut, signInWithRedirect, getRedirectResult } from "firebase/auth";
   import { firebase_app } from '../js/firebase_config.js';
-  import { user_profile, user_auth, user_authenticated } from '../js/auth_store.js';
+  import { f7, Page, Block, BlockFooter, Button, Row, Col } from 'framework7-svelte';
+  import { getAuth, GoogleAuthProvider,signOut, signInWithRedirect, getRedirectResult } from "firebase/auth";
+  import { user_email, user_authenticated, user_login_progress } from '../js/snacks_store.js';
   import { create_logger } from '../js/logger';
+
+  export let f7router; // this is just to avoid a warning
+  export let f7route;
+  
+  const log = create_logger("login.svelte");
   let provider = null;
   let auth = null;
-  let loading=localStorage.getItem('signprogress');
-  const log = create_logger("login.svelte");
   
-  // import { user_login, user_logout } from '../components/Firebase.svelte';
-  // import { user_auth } from '../components/user_store.svelte';
-  // import { onMount } from 'svelte';
-
-  // export let f7router;
-
-  
-
   onMount(async () => {
-    log.info("SONO ENTRATO0000000");
-    log.info($user_authenticated);
+    log.info("Page Mounting");
     provider = new GoogleAuthProvider();
     provider.setCustomParameters({
       hd: 'istitutoagnelli.it'
     });
-    
     auth = getAuth();
-    $user_auth = auth;
-
+  
     getRedirectResult(auth)
     .then(async function (result)  {
-        log.info("SONO ENTRATO2");
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        log.info("SONO ENTRATO2a");
         const token = credential.accessToken;
-        log.info("SONO ENTRATO2b");
         const user = result.user;
-        log.info("SONO ENTRATO2c");
 
         if (user.email.split('@')[1] != "istitutoagnelli.it") {
           log.error(`Unauthorized login by user ${user.email}`);
           await signOut(auth);
-          $user_auth = null;
-          $user_profile = null;
-          $user_authenticated = false;
+          $user_email = null; 
+          $user_authenticated = "false";
         } else {
           log.info(`User ${user.email} correctly signed in`);
-          $user_profile = user; 
-          $user_authenticated = true;
+          $user_email = user.email; 
+          $user_authenticated = "true";
         }  
-        localStorage.setItem('signprogress', false);
+        $user_login_progress = "false";
       }).catch((error) => {
-        log.error("MIO ERROR");
         log.error(error);
       }); 
-
-
   });
 
-
   async function signIn() {
-    // signInWithPopup(auth, provider)
+    log.info("SIGIN");
     signInWithRedirect(auth, provider);
-    localStorage.setItem('signprogress', true);
-      // .then(async function (result)  {
-      //   log.info("SONO ENTRATO");
-      //   const credential = GoogleAuthProvider.credentialFromResult(result);
-      //   const token = credential.accessToken;
-      //   const user = result.user;
-
-      //   if (user.email.split('@')[1] != "istitutoagnelli.it") {
-      //     log.error(`Unauthorized login by user ${user.email}`);
-      //     await signOut(auth);
-      //     $user_auth = null;
-      //     $user_profile = null;
-      //     $user_authenticated = false;
-      //   } else {
-      //     log.info(`User ${user.email} correctly signed in`);
-      //     $user_profile = user; 
-      //     $user_authenticated = true;
-      //   }  
-      // }).catch((error) => {
-      //   log.error(error);
-      // }); 
+    $user_login_progress = "true";
   }
-
-
-
-  // async function signIn() {
-  //   console.log(email);
-  //   console.log(password);
-  //   await user_login(email, password);
-  //   console.log($user_auth);
-  //   if ($user_auth == true) {
-  //     console.log("USER CORRECTLY LOGIN");
-  //     f7router.navigate({ name: 'home' });
-  //   }
-  //   else {
-  //     console.log("USER CANNOT BE PROPERLY LOGIN");
-  //   }
-
-    //f7.dialog.alert(`Username: ${username}<br>Password: ${password}`, () => {
-    //  f7router.back();
-    //});
-  // }
 </script>
