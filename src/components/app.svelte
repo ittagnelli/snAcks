@@ -1,8 +1,5 @@
 <App { ...f7params } themeDark>
-
-  {#if $user_authenticated == "false"}
-    <View main class="safe-areas" url="/login/" />
-  {:else}
+  {#if $user_authenticated == "true"}
   <Views tabs class="safe-areas">
     <Toolbar tabbar labels bottom>
       <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home"
@@ -14,8 +11,10 @@
     <View id="view-storico" name="catalog" tab url="/storico/" />
     <View id="view-ordini" name="settings" tab url="/ordini/" />
   </Views>      
+  {:else}
+    <View main class="safe-areas" url="/login/" />
   {/if}
-  </App>
+</App>
 
 <script>
   import {

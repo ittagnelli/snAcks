@@ -24,7 +24,7 @@
   import { user_email, user_authenticated, user_login_progress } from '../js/snacks_store.js';
   import { create_logger } from '../js/logger';
 
-  export let f7router; // this is just to avoid a warning
+  export let f7router;
   export let f7route;
   
   const log = create_logger("login.svelte");
