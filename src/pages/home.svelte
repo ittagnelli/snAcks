@@ -48,6 +48,9 @@
     </Row>
   </Block>
   </Block>
+  <Snackbar class="flex-column snack" bind:active={snackbar} center timeout={3000}>
+    Ordine effettuato
+  </Snackbar>
 </Page>
 
 <script>
@@ -77,7 +80,9 @@
   import { create_logger } from '../js/logger.js';
   import { create_order } from '../js/model.js';
 
+  import { Snackbar} from 'svelte-materialify';
 
+  let snackbar = false;
   let log = create_logger('home.svelte');
   export let f7router;
   export let f7route;
@@ -127,5 +132,6 @@
       let order = create_order($user_email,item.day, num_dolci, num_salati);
       write_doc(order, 'snacks'); 
     });
+    snackbar = true;
   }
 </script>
