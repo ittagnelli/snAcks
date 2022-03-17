@@ -1,42 +1,42 @@
 {
   "name": "snAcks",
-  "short_name": "snAcks",
-  "description": "snAcks",
-  "lang": "en-US",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#EE350F",
-  "theme_color": "#EE350F",
+  "description": "Applicazione per la prenotazione della merenda delle 10.00",
   "icons": [
-    {
-      "src": "/icons/128x128.png",
-      "sizes": "128x128",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/144x144.png",
-      "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/152x152.png",
-      "sizes": "152x152",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/256x256.png",
-      "sizes": "256x256",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+      {
+        "src": "/icons/128x128.png",
+        "type": "image/png",
+        "sizes": "128x128"
+      },
+      {
+        "src": "/icons/144x144.png",
+        "type": "image/png",
+        "sizes": "144x144"
+      },
+      {
+        "src": "/icons/152x152.png",
+        "type": "image/png",
+        "sizes": "152x152"
+      },
+      {
+        "src": "/icons/192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+
+      {
+        "src": "/icons/256x256.png",
+        "type": "image/png",
+        "sizes": "256x256"
+      },
+      {
+        "src": "/icons/512x512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff1a",
+  "theme_color": "#ffffff1a"
 }
