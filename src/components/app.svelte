@@ -1,24 +1,22 @@
 <App { ...f7params } themeDark>
-
-  {#if $user_auth == "false"}
-    <View main class="safe-areas" url="/login/" />
-  {:else}
+  {#if $user_authenticated == "true"}
   <Views tabs class="safe-areas">
     <Toolbar tabbar labels bottom>
-      <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home" />
+      <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home"
+      />
       <Link tabLink="#view-storico" iconIos="f7:clock" iconAurora="f7:clock" iconMd="f7:clock" text="Storico" />
       <Link tabLink="#view-ordini" iconIos="f7:cart" iconAurora="f7:cart" iconMd="f7:cart" text="Ordini" />
     </Toolbar>
     <View id="view-home" main tab tabActive url="/" />
     <View id="view-storico" name="catalog" tab url="/storico/" />
     <View id="view-ordini" name="settings" tab url="/ordini/" />
-  </Views>
+  </Views>      
+  {:else}
+    <View main class="safe-areas" url="/login/" />
   {/if}
-  </App>
+</App>
+
 <script>
-  import { onMount } from 'svelte';
-  import { getDevice }  from 'framework7/lite-bundle';
-  import { user_auth } from './user_store.svelte';
   import {
     f7,
     f7ready,
@@ -29,24 +27,22 @@
     Link
   } from 'framework7-svelte';
 
+  import { onMount } from 'svelte';
+  import { getDevice }  from 'framework7/lite-bundle';  
   import capacitorApp from '../js/capacitor-app';
   import routes from '../js/routes';
-  import store from '../js/store';
-
+  import { user_authenticated } from '../js/snacks_store.js';
+  import store from '../js/store'
+  let provider = null;
+  let auth = null;
   const device = getDevice();
-  // Framework7 Parameters
+
   let f7params = {
     name: 'snAcks', // App name
     theme: 'auto', // Automatic theme detection
-
-
     id: 'io.ats.snacks', // App bundle ID
-    // App store
-    store: store,
-    // App routes
     routes: routes,
-
-    // Input settings
+    store:store,
     input: {
       scrollIntoViewOnFocus: device.capacitor,
       scrollIntoViewCentered: device.capacitor,
@@ -61,23 +57,13 @@
       androidOverlaysWebView: false,
     },
   };
-  // Login screen demo data
-  let username = '';
-  let password = '';
-
-  function alertLoginData() {
-    f7.dialog.alert('Username: ' + username + '<br>Password: ' + password, () => {
-      f7.loginScreen.close();
-    });
-  }
+  
   onMount(() => {
     f7ready(() => {
-
       // Init capacitor APIs (see capacitor-app.js)
       if (f7.device.capacitor) {
         capacitorApp.init(f7);
       }
-      // Call F7 APIs here
     });
   })
 </script>
