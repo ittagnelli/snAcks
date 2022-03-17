@@ -8,7 +8,9 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development vite",
-    "build": "cross-env NODE_ENV=production vite build && npx workbox generateSW workbox-config.js",
+    "build": "cross-env NODE_ENV=production vite build",
+    "build-capacitor-ios": "cross-env NODE_ENV=production vite build && npx cap copy ios",
+    "build-capacitor-android": "cross-env NODE_ENV=production vite build && npx cap copy android",
     "postinstall": "cpy ./node_modules/framework7-icons/fonts/*.* ./src/fonts/ && cpy ./node_modules/material-icons/iconfont/*.* ./src/fonts/"
   },
   "browserslist": [
@@ -20,6 +22,14 @@
     "Samsung >= 5"
   ],
   "dependencies": {
+    "@capacitor/android": "^3.4.1",
+    "@capacitor/app": "^1.1.0",
+    "@capacitor/browser": "^1.0.7",
+    "@capacitor/core": "^3.4.1",
+    "@capacitor/ios": "^3.4.1",
+    "@capacitor/keyboard": "^1.2.2",
+    "@capacitor/splash-screen": "^1.2.2",
+    "@capacitor/status-bar": "^1.0.8",
     "dom7": "^3.0.0",
     "firebase": "^9.6.7",
     "firebase-admin": "^10.0.2",
@@ -33,11 +43,12 @@
     "swiper": "^6.8.4"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.37",
-    "cpy-cli": "^3.1.1",
+    "@capacitor/cli": "^3.4.1",
+    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.39",
+    "cordova-res": "^0.15.4",
+    "cpy-cli": "^4.0.0",
     "cross-env": "^7.0.3",
     "postcss-preset-env": "^6.7.1",
-    "vite": "^2.8.4",
-    "workbox-cli": "^6.5.0"
+    "vite": "^2.8.6"
   }
 }
