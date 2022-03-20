@@ -1,7 +1,6 @@
-
 import { firebaseConfig, firebase_app } from './firebase_config.js';
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where, getDocs } from "firebase/firestore";
+import { getFirestore, collection, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where, getDocs, limit, orderBy } from "firebase/firestore";
 import { create_logger } from './logger.js';
 
 
@@ -10,9 +9,7 @@ const log = create_logger("firebase.js");
 
 // Initialize Firebase
 log.info("Initialize Firestore connection");
-// const app = initializeApp(firebaseConfig);
 const db = getFirestore();
-
 
 
 //legge un documento appartenente ad una specifica collezione
@@ -30,47 +27,43 @@ export async function read_doc(coll, docname) {
     }
 }
 
-export async function search_by_token(token, field) {
-    const q = query(collection(db, "directory"), where(field, ">=", token), where(field, "<", token + 'z'));
+export async function get_orders_by_email(email) {
+    let orders = []
+    const q = query(collection(db, "snacks"), where("email", "==", email), orderBy("date_order", "desc"), limit(5));
     const querySnapshot = await getDocs(q);
-    return querySnapshot;
+    
+    querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+        orders.push({
+            id: doc.id,
+            order: doc.data()
+        })
+    });
+    return orders;
 }
+
+
+
+
+// export async function search_by_token(token, field) {
+//     const q = query(collection(db, "directory"), where(field, ">=", token), where(field, "<", token + 'z'));
+//     const querySnapshot = await getDocs(q);
+//     return querySnapshot;
+// }
 
 
 
 //legeg una collezione e restituisce solo i documenti che fanno match con filterArray
-export async function read_coll(coll, filterArray) {
-    console.log("XXXXXx");
+// export async function read_coll(coll, filterArray) {
+//     let q1 = new query();
+//     q1.where("colore", "==", "giallo");
     
-    // let xquery;
+//     const querySnapshot = await getDocs(q1);
+//     querySnapshot.forEach((doc) => {
+//         console.log(doc.id, " => ", doc.data());
+//     });
 
-    // xquery = filterArray.reduce((accQuery, filter) => {
-    //                   return accQuery.where(filter.field, filter.op, filter.value);
-    //                 }, xquery);
-
-    // const q = query(collection(db, coll), xquery);
-
-
-    // const q = query(collection(db, coll), where("colore", "==", "giallo"));
-
-    // const q = query(collection(db, coll), where("colore", "==", "giallo"), where("nome", "==", "antonio4"));
-    // const querySnapshot = await getDocs(q);
-    // console.log(querySnapshot);
-    // querySnapshot.forEach((doc) => {
-    //     console.log(doc.id, " => ", doc.data());
-    // });
-
-    let q1 = new query();
-
-    q1.where("colore", "==", "giallo");
-    // const q2 = query(q1, where("nome", "==", "antonio4"));
-
-    const querySnapshot = await getDocs(q1);
-    querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-    });
-
-}
+// }
 
 
 //legeg una collezione e restituisce solo i documenti che fanno match con filterArray

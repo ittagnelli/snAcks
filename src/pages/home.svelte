@@ -28,110 +28,122 @@
   </Card>
   <Block>
     <List>
-      <ListItem checkbox bind:checked={selections[0].selected} title={selections[0].day} name="tomorrow" id="tomorrow"></ListItem>
-      <ListItem checkbox bind:checked={selections[1].selected} title={selections[1].day} name="totomorrow" id="totomorrow"></ListItem>
-      <ListItem checkbox bind:checked={selections[2].selected} title={selections[2].day} name="date" id="date"></ListItem>
+      <ListItem checkbox bind:checked={selections[0].selected} title={selections[0].day} name="day1" id="day1"></ListItem>
+      <ListItem checkbox bind:checked={selections[1].selected} title={selections[1].day} name="day2" id="day2"></ListItem>
+      <ListItem checkbox bind:checked={selections[2].selected} title={selections[2].day} name="day3" id="day3"></ListItem>
     </List>
   </Block>
+  
+  {#if can_order == true}
   <Block>
-  <Block strong>
-    <Row tag="p">
-      <Col tag="span">
-        
-      </Col>
-      <Col tag="span">
-        <Button raised fill onClick={order_snack}>Ordina</Button>
-      </Col>
-      <Col tag="span">
-        
-      </Col>
-    </Row>
+    <Block strong>
+      <Row tag="p">
+        <Col tag="span"></Col>
+        <Col tag="span">
+          <Button raised fill onClick={order_snack} color="green">Ordina</Button>
+        </Col>
+        <Col tag="span"></Col>
+      </Row>
+    </Block>
   </Block>
-  </Block>
+  {/if}
   <Snackbar class="flex-column snack" bind:active={snackbar} center timeout={3000}>
     Ordine effettuato
   </Snackbar>
 </Page>
 
 <script>
-  import {
-    Page,
-    Stepper,
-    Navbar,
-    Card,
-    NavLeft,
-    NavTitle,
-    NavTitleLarge,
-    NavRight,
-    Link,
-    Toolbar,
-    Block,
-    BlockTitle,
-    List,
-    ListItem,
-    Row,
-    Col,
-    Button
-  } from 'framework7-svelte';
+import {
+  Page,
+  Stepper,
+  Navbar,
+  Card,
+  NavLeft,
+  NavTitle,
+  NavTitleLarge,
+  NavRight,
+  Link,
+  Toolbar,
+  Block,
+  BlockTitle,
+  List,
+  ListItem,
+  Row,
+  Col,
+  Button,
+  Segmented
+} from 'framework7-svelte';
 
-  import { user_email, user_authenticated } from '../js/snacks_store.js';
-  import { getAuth, GoogleAuthProvider,signOut, signInWithRedirect, getRedirectResult } from "firebase/auth";
-  import { read_doc, write_doc } from '../js/firebase.js';
-  import { create_logger } from '../js/logger.js';
-  import { create_order } from '../js/model.js';
+import { user_email, user_authenticated } from '../js/snacks_store.js';
+import { getAuth, GoogleAuthProvider,signOut, signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { read_doc, write_doc } from '../js/firebase.js';
+import { create_logger } from '../js/logger.js';
+import { create_order } from '../js/model.js';
+import { Snackbar} from 'svelte-materialify';
 
-  import { Snackbar} from 'svelte-materialify';
+export let f7router;
+export let f7route;
 
-  let snackbar = false;
-  let log = create_logger('home.svelte');
-  export let f7router;
-  export let f7route;
+let log = create_logger('home.svelte');
+let snackbar = false;
+let can_order = false;
+let num_salati = 0;
+let num_dolci = 0;
+let today = new Date();
+let day1 = nextBizDay(today).toLocaleDateString("it-IT")
+let day2 = nextBizDay(today).toLocaleDateString("it-IT")
+let day3 = nextBizDay(today).toLocaleDateString("it-IT")
 
-  let num_salati = 0;
-  let num_dolci = 0;
+let selections = [
+  {selected: false,
+    day: day1
+  },
+  {selected: false,
+    day: day2
+  },
+  {selected: false,
+    day: day3
+  },
+];
 
+let provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  hd: 'istitutoagnelli.it'
+});    
+let auth = getAuth();
 
-  let provider = new GoogleAuthProvider();
-  provider.setCustomParameters({
-    hd: 'istitutoagnelli.it'
-  });    
-  let auth = getAuth();
+$: {
+  if ((num_dolci > 0 || 
+      num_salati > 0) &&
+      (selections[0].selected == true ||
+      selections[1].selected == true ||
+      selections[2].selected == true)) 
+    can_order = true;
+  else
+    can_order = false;
+}
+
+function nextBizDay(start) {
+  do {
+    start.setDate(start.getDate() + 1);
+  } while (start.getDay() == 0 || start.getDay() == 6)
   
+  return start
+}
 
-  var today = new Date();
-  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+3);
-  var tomorrow = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+1);
-  var totomorrow = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+2);
-
-  let selections = [
-    {selected: false,
-     day: tomorrow
-    },
-    {selected: false,
-     day: totomorrow
-    },
-    {selected: false,
-     day: date
-    },
-  ];
-
-  async function order_snack() {
-    log.info("ordina_snack call");
-    log.info(`DOLCI = ${num_dolci}`);
-    log.info(`SALATI = ${num_salati}`);
-    log.info(`SELEZIONE1 = ${selections[0].selected}`);
-    log.info(`SELEZIONE2 = ${selections[1].selected}`);
-    log.info(`SELEZIONE3 = ${selections[2].selected}`);
-
-    
-    log.info(JSON.stringify(selections));
-    
-    let current_orders = selections.filter(item => item.selected == true);
-    current_orders.map(item => {
-      log.info(JSON.stringify(item));
-      let order = create_order($user_email,item.day, num_dolci, num_salati);
-      write_doc(order, 'snacks'); 
-    });
-    snackbar = true;
-  }
+async function order_snack() {
+  let current_orders = selections.filter(item => item.selected == true);
+  current_orders.map(item => {
+    let order = create_order($user_email, item.day, num_dolci, num_salati);
+    write_doc(order, 'snacks'); 
+  });
+  snackbar = true;
+  num_salati = 0;
+  num_dolci = 0;
+  
+  selections[0].selected = false;
+  selections[1].selected = false;
+  selections[2].selected = false;
+  log.info("Order made to DB");
+}
 </script>

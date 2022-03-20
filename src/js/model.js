@@ -9,11 +9,12 @@ let order = {
 }
 
 export function create_order(email, date_order, qty_dolce, qty_salato) {
-    return order = {email: email,
+    return order = {timestamp: new Date().toLocaleString("it-IT"),
+                    email: email,
                     date_order: date_order,
-                    yy_order: date_order.split('-')[0],
-                    mm_order: date_order.split('-')[1],
-                    dd_order: date_order.split('-')[2],
+                    yy_order: date_order.split('/')[2],
+                    mm_order: date_order.split('/')[1],
+                    dd_order: date_order.split('/')[0],
                     qty_dolce,
                     qty_salato}
 }
