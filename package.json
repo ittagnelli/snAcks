@@ -8,7 +8,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development vite",
-    "build": "cross-env NODE_ENV=production vite build",
+    "build": "cross-env NODE_ENV=production vite build && npx workbox generateSW workbox-config.js",
     "build-capacitor-ios": "cross-env NODE_ENV=production vite build && npx cap copy ios",
     "build-capacitor-android": "cross-env NODE_ENV=production vite build && npx cap copy android",
     "postinstall": "cpy ./node_modules/framework7-icons/fonts/*.* ./src/fonts/ && cpy ./node_modules/material-icons/iconfont/*.* ./src/fonts/"
@@ -42,7 +42,8 @@
     "skeleton-elements": "^3.5.0",
     "svelte": "^3.46.4",
     "svelte-materialify": "^0.3.11",
-    "swiper": "^6.8.4"
+    "swiper": "^6.8.4",
+    "workbox-cli": "^6.5.2"
   },
   "devDependencies": {
     "@capacitor/cli": "^3.4.1",
