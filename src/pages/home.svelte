@@ -1,5 +1,5 @@
 <Page name="home" onPageInit={get_user_order} onPageTabShow={get_user_order}>
-  <Navbar title="snAcks v0.1" />
+  <Navbar title="snAcks v0.2" />
   <Card>
      <span slot="header">      
         <p class="cardtitle">Salati</p>

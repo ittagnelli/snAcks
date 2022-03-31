@@ -57,7 +57,8 @@
     },
     // Register service worker (only on production build)
     serviceWorker: process.env.NODE_ENV ==='production' ? {
-      path: '/service-worker.js',
+      path: './service-worker.js',
+      scope: '/snacks/'
     } : {},
     // Capacitor Statusbar settings
     statusbar: {
