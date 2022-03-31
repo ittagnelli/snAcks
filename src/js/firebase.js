@@ -28,7 +28,7 @@ export async function read_doc(coll, docname) {
 }
 
 export async function get_orders_by_email(email) {
-    let orders = []
+    let orders = [];
     const q = query(collection(db, "snacks"), where("email", "==", email), orderBy("date_order", "desc"), limit(5));
     const querySnapshot = await getDocs(q);
     
@@ -42,8 +42,33 @@ export async function get_orders_by_email(email) {
     return orders;
 }
 
+export async function get_orders_by_user_date(email, order_date) {
+    const q = query(collection(db, "snacks"), 
+                    where("email", "==", email),
+                    where("date_order", "==", order_date));
+    const querySnapshot = await getDocs(q);
 
+    return querySnapshot.size;
+}
 
+export async function get_orders_by_date(order_date) {
+    let num_salato = 0;
+    let num_dolce = 0;
+
+    const q = query(collection(db, "snacks"), 
+                    where("date_order", "==", order_date));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+        num_salato += doc.data().qty_salato;
+        num_dolce += doc.data().qty_dolce;
+    });
+
+    return {
+            "num_dolce": num_dolce,
+            "num_salato": num_salato
+        };
+}
 
 // export async function search_by_token(token, field) {
 //     const q = query(collection(db, "directory"), where(field, ">=", token), where(field, "<", token + 'z'));
