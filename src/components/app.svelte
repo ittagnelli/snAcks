@@ -5,11 +5,19 @@
       <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home"
       />
       <Link tabLink="#view-storico" iconIos="f7:clock" iconAurora="f7:clock" iconMd="f7:clock" text="Storico" />
-      <Link tabLink="#view-ordini" iconIos="f7:cart" iconAurora="f7:cart" iconMd="f7:cart" text="Ordini" />
-    </Toolbar>
+      {#if $user_email == "economo@istitutoagnelli.it" || 
+           $user_email == "espedito.mancuso@istitutoagnelli.it" ||
+           $user_email == "andrea.canale@istitutoagnelli.it"}
+        <Link tabLink="#view-ordini" iconIos="f7:cart" iconAurora="f7:cart" iconMd="f7:cart" text="Ordini" />
+      {/if}
+      </Toolbar>
     <View id="view-home" main tab tabActive url="/" />
     <View id="view-storico" name="catalog" tab url="/storico/" />
-    <View id="view-ordini" name="settings" tab url="/ordini/" />
+    {#if $user_email == "economo@istitutoagnelli.it" || 
+           $user_email == "espedito.mancuso@istitutoagnelli.it" ||
+           $user_email == "andrea.canale@istitutoagnelli.it"}
+      <View id="view-ordini" name="settings" tab url="/ordini/" />
+    {/if}
   </Views>      
   {:else}
     <View main class="safe-areas" url="/login/" />
@@ -31,7 +39,7 @@
   import { getDevice }  from 'framework7/lite-bundle';  
   import capacitorApp from '../js/capacitor-app';
   import routes from '../js/routes';
-  import { user_authenticated } from '../js/snacks_store.js';
+  import { user_authenticated, user_email } from '../js/snacks_store.js';
   import store from '../js/store'
   let provider = null;
   let auth = null;
@@ -49,7 +57,8 @@
     },
     // Register service worker (only on production build)
     serviceWorker: process.env.NODE_ENV ==='production' ? {
-      path: '/service-worker.js',
+      path: './service-worker.js',
+      scope: '/snacks/'
     } : {},
     // Capacitor Statusbar settings
     statusbar: {
