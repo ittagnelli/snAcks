@@ -5,13 +5,16 @@
       <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home"
       />
       <Link tabLink="#view-storico" iconIos="f7:clock" iconAurora="f7:clock" iconMd="f7:clock" text="Storico" />
+      
       {#if $user_email == "economo@istitutoagnelli.it" || 
            $user_email == "espedito.mancuso@istitutoagnelli.it" ||
            $user_email == "andrea.canale@istitutoagnelli.it"}
         <Link tabLink="#view-ordini" iconIos="f7:cart" iconAurora="f7:cart" iconMd="f7:cart" text="Ordini" />
       {/if}
+      <Link tabLink="#view-about" iconIos="f7:info_circle" iconAurora="f7:info_circle" iconMd="f7:info_circle" text="Informazioni" />
       </Toolbar>
     <View id="view-home" main tab tabActive url="/" />
+    <View id="view-about" name="about" tab url="/about/" />
     <View id="view-storico" name="catalog" tab url="/storico/" />
     {#if $user_email == "economo@istitutoagnelli.it" || 
            $user_email == "espedito.mancuso@istitutoagnelli.it" ||
@@ -22,6 +25,7 @@
   {:else}
     <View main class="safe-areas" url="/login/" />
   {/if}
+  
 </App>
 
 <script>

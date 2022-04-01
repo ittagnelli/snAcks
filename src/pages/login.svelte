@@ -1,6 +1,6 @@
 <Page noToolbar noNavbar noSwipeback loginScreen>
   <div class="col" align="center">
-    <img src="snacks.jpg" alt="snAcks">
+    <img src="/icons/144x144.png" alt="snAcks">
   </div>
   <Block>
     <Row>
