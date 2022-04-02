@@ -1,5 +1,5 @@
 <Page name="home" onPageInit={get_user_order} onPageTabShow={get_user_order}>
-  <Navbar title="snAcks v0.3" />
+  <Navbar title={$title_bar} />
   <Card>
      <span slot="header">      
         <p class="cardtitle">Salati</p>
@@ -35,7 +35,8 @@
   </Block>
   
   <Snackbar class="flex-column snack" bind:active={snackbar} center timeout={3000}>
-    Ordine effettuato
+    <img src="icons/thumbs_up.png" width="50" />
+    <p id="snack_ok">Ordine effettuato correttamente!!</p>
   </Snackbar>
   
   {#if can_order == true}
@@ -75,7 +76,7 @@ import {
   Segmented
 } from 'framework7-svelte';
 
-import { user_email, user_authenticated } from '../js/snacks_store.js';
+import { user_email, user_authenticated, title_bar } from '../js/snacks_store.js';
 import { getAuth, GoogleAuthProvider,signOut, signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { read_doc, write_doc, get_orders_by_user_date } from '../js/firebase.js';
 import { create_logger } from '../js/logger.js';
@@ -156,7 +157,7 @@ async function order_snack() {
   selections[1].selected = false;
   selections[2].selected = false;
 
-  
+  reg.update();
   log.info("Order made to DB");
 }
 
@@ -170,9 +171,9 @@ async function get_user_order() {
   console.log(can_order2);
   console.log(can_order3);
 
-  // selections[0].disabled = can_order1 == 0 ? false : true;
-  // selections[1].disabled = can_order2 == 0 ? false : true;
-  // selections[2].disabled = can_order3 == 0 ? false : true;
+  selections[0].disabled = can_order1 == 0 ? false : true;
+  selections[1].disabled = can_order2 == 0 ? false : true;
+  selections[2].disabled = can_order3 == 0 ? false : true;
 
   console.log(selections[0].disabled);
   console.log(selections[1].disabled);
@@ -181,3 +182,16 @@ async function get_user_order() {
 }
 
 </script>
+
+<style>
+  .snack {
+    position: absolute;
+    top: 250px;
+  }
+
+  #snack_ok {
+    color: #00f169;
+    font-size: 1.1rem;
+  }
+
+</style>
