@@ -13,7 +13,7 @@
 <p>Il codice sorgente è disponibile al seguente <a href="#" on:click={open}>link</a></p>
 </div>
 <h4>&nbsp;</h4>
-<List accordionList>
+<!-- <List accordionList>
     <ListItem accordionItem title="Privacy Policy">
       <AccordionContent>
         <Block>
@@ -21,7 +21,7 @@
         </Block>
       </AccordionContent>
     </ListItem>
-</List>
+</List> -->
 </Block>
 </Page>
 
