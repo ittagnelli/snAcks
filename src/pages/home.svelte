@@ -35,7 +35,7 @@
   </Block>
   
   <Snackbar class="flex-column snack" bind:active={snackbar} center timeout={3000}>
-    <img src="icons/thumbs_up.png" width="50" />
+    <img src="icons/thumbs_up.png" width="50" alt="thumbsup" />
     <p id="snack_ok">Ordine effettuato correttamente!!</p>
   </Snackbar>
   

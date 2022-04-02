@@ -1,7 +1,7 @@
 <Page name="about">
   <Navbar title={$title_bar} />
   <div>
-    <img src="/icons/144x144.png"/>
+    <img src="icons/144x144.png"alt="logo" />
     <h6>{$title_bar}</h6><br>
 
     <BlockTitle>Applicazione sviluppata per ATS da:</BlockTitle>
@@ -15,7 +15,7 @@
     </Row>
 
     <!-- <h4>&nbsp;</h4> -->
-    <img src="/ats.png" width="128"/>
+    <img src="ats.png" width="128" alt="ats"/>
     <!-- <h4>&nbsp;</h4> -->
     <p>Il codice sorgente è disponibile al seguente <a href="#" on:click={open}>link</a></p>
 
@@ -51,7 +51,7 @@
    }
 
    img {
-     margin-top: 40px;
+     margin-top: 20px;
      margin-bottom: 20px;
    }
 </style>

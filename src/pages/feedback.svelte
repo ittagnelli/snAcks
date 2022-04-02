@@ -25,19 +25,19 @@
     {/if}
 
     <Snackbar class="flex-column snack" bind:active={snackbar_ok} center timeout={3000}>
-      <img src="icons/thumbs_up.png" width="50" />
+      <img src="icons/thumbs_up.png" width="50" alt="thumbsup" />
       <p class="ok">Messaggio inviao correttamente.</p>
       <p class="ok">Grazie del tuo contributo!!</p>
     </Snackbar>
 
     <Snackbar class="flex-column snack" bind:active={snackbar_error} center timeout={3000}>
-      <img src="icons/thumbs_down.png" width="50" />
+      <img src="icons/thumbs_down.png" width="50" alt="thumbsdown" />
       <p class="error">Impossibile inviare il tuo messaggio.</p>
       <p class="error">E' necessario compilare tutti i campi</p>
     </Snackbar>
 
     <Snackbar class="flex-column snack" bind:active={snackbar_wait} center timeout={5000}>
-      <img src="icons/wait.png" width="50" />
+      <img src="icons/wait.png" width="50" alt="wait" />
       <p class="error">Impossibile inviare al momento.</p>
       <p class="error">Riprova tra 1 minuto!</p>
     </Snackbar>

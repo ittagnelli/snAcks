@@ -17,10 +17,10 @@
     <View id="view-about" name="about" tab url="/about/" />
     <View id="view-storico" name="catalog" tab url="/storico/" />
     <View id="view-feedback" name="feedback" tab url="/feedback/" />
-    <View id="view-ordini" name="settings" tab url="/ordini/" />
     {#if $user_email == "economo@istitutoagnelli.it" || 
            $user_email == "espedito.mancuso@istitutoagnelli.it" ||
            $user_email == "andrea.canale@istitutoagnelli.it"}
+      <View id="view-ordini" name="settings" tab url="/ordini/" />
     {/if}
   </Views>      
   {:else}
