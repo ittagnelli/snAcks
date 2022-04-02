@@ -1,5 +1,5 @@
 <Page name="storico" onPageTabShow={calculate_total_orders}>
-  <Navbar title="Ordini"></Navbar>
+  <Navbar title={$title_bar} />
   <Block>
     <p>
       Totale ordini giornalieri per tipo di alimento
@@ -67,7 +67,7 @@
   import { onMount } from 'svelte';
   import { Badge, f7, Button, Page, Navbar, Block, BlockTitle, List, ListItem } from 'framework7-svelte';
   import { get_orders_by_date } from '../js/firebase.js';
-  import { user_email } from '../js/snacks_store.js';
+  import { user_email, title_bar } from '../js/snacks_store.js';
 
   export let f7router; // this is just to avoid a warning
   export let f7route;

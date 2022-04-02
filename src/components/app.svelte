@@ -5,7 +5,7 @@
       <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home"
       />
       <Link tabLink="#view-storico" iconIos="f7:clock" iconAurora="f7:clock" iconMd="f7:clock" text="Storico" />
-      
+      <Link tabLink="#view-feedback" iconIos="f7:arrow_2_circlepath_circle" iconAurora="f7:arrow_2_circlepath_circle" iconMd="f7:arrow_2_circlepath_circle" text="Feedback" />
       {#if $user_email == "economo@istitutoagnelli.it" || 
            $user_email == "espedito.mancuso@istitutoagnelli.it" ||
            $user_email == "andrea.canale@istitutoagnelli.it"}
@@ -16,6 +16,7 @@
     <View id="view-home" main tab tabActive url="/" />
     <View id="view-about" name="about" tab url="/about/" />
     <View id="view-storico" name="catalog" tab url="/storico/" />
+    <View id="view-feedback" name="feedback" tab url="/feedback/" />
     {#if $user_email == "economo@istitutoagnelli.it" || 
            $user_email == "espedito.mancuso@istitutoagnelli.it" ||
            $user_email == "andrea.canale@istitutoagnelli.it"}
@@ -43,11 +44,13 @@
   import { getDevice }  from 'framework7/lite-bundle';  
   import capacitorApp from '../js/capacitor-app';
   import routes from '../js/routes';
-  import { user_authenticated, user_email } from '../js/snacks_store.js';
+  import { user_authenticated, user_email, title_bar } from '../js/snacks_store.js';
   import store from '../js/store'
   let provider = null;
   let auth = null;
   const device = getDevice();
+
+  $title_bar = "snAcks v0.4";
 
   let f7params = {
     name: 'snAcks', // App name

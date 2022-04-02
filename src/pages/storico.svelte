@@ -1,5 +1,5 @@
 <Page name="storico" onPageTabShow={get_order}>
-  <Navbar title="Storico"></Navbar>
+  <Navbar title={$title_bar} />
   <Block>
     <p>
       Storico degli ordini degli ultimi 5 giorni.
@@ -23,7 +23,7 @@
   import { onMount } from 'svelte';
   import { Badge, f7, Button, Page, Navbar, Block, BlockTitle, List, ListItem, SwipeoutActions, SwipeoutButton} from 'framework7-svelte';
   import { get_orders_by_email, delete_doc } from '../js/firebase.js';
-  import { user_email } from '../js/snacks_store.js';
+  import { user_email, title_bar } from '../js/snacks_store.js';
   import OrderItem from '../components/list_swipe.svelte';
 
   export let f7router; // this is just to avoid a warning

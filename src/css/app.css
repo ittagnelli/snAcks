@@ -60,8 +60,3 @@
 .theme-dark .navbar-large.navbar-transparent {
   --f7-navbar-large-title-text-color: #fff;
 }
-
-.snack {
-  position: absolute;
-  top: 250px;
-}
