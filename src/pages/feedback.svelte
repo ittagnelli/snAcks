@@ -1,5 +1,5 @@
 <Page name="feedback" onPageTabShow={enable_send}>
-  <Nav></Nav>
+  <Nav title="Feedback"></Nav>
     <BlockTitle>Fai sentire la tua voce!!</BlockTitle>
     <Block>
       <p>
