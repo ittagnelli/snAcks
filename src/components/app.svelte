@@ -1,4 +1,4 @@
-<App { ...f7params } themeDark>
+<App { ...f7params }>
   {#if $user_authenticated == "true"}
   <Views tabs class="safe-areas">
     <Toolbar tabbar labels bottom>
@@ -50,7 +50,7 @@
   let auth = null;
   const device = getDevice();
 
-  $title_bar = "snAcks v0.5";
+  $title_bar = "snAcks v1.0RC1c";
 
   let f7params = {
     name: 'snAcks', // App name
@@ -65,7 +65,7 @@
     // Register service worker (only on production build)
     serviceWorker: process.env.NODE_ENV ==='production' ? {
       path: './service-worker.js',
-      scope: '/snacks/'
+      scope: '/snacks1/'
     } : {},
     // Capacitor Statusbar settings
     statusbar: {

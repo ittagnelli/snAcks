@@ -1,5 +1,4 @@
 /* Invert navigation bars to fill style */
-
 :root,
 :root.theme-dark,
 :root .theme-dark {
@@ -14,21 +13,6 @@
   --f7-tabbar-link-inactive-color: rgba(255,255,255,0.54);
   --f7-sheet-border-color: transparent;
   --f7-tabbar-link-active-border-color: #fff;
-}
-.cardtitle{
-  position: absolute;
-  top: -5px;
-}
-.selezione{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-.imgcard{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
 }
 .appbar,
 .navbar,
