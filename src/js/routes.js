@@ -4,6 +4,8 @@ import OrdiniPage from '../pages/ordini.svelte';
 import LoginPage from '../pages/login.svelte';
 import AboutPage from '../pages/about.svelte';
 import FeedbackPage from '../pages/feedback.svelte';
+import Manuale from '../pages/manuale.svelte';
+
 var routes = [
   {
     path: '/',
@@ -28,6 +30,10 @@ var routes = [
   {
     path: '/about/',
     component: AboutPage,
+  },
+  {
+    path: '/manuale/',
+    component: Manuale,
   }
 ];
 
