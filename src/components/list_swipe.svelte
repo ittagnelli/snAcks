@@ -2,7 +2,7 @@
 <div id={order.id}>
     <ListItem
         swipeout
-        onSwipeoutDeleted={onDeleted}
+        onSwipeoutDelete={onDeleted}
         title="{title_order}"
         after="{date_order}">  
         <SwipeoutActions right>
@@ -35,7 +35,6 @@
     console.log(date_order);
 
     function onDeleted() {
-      document.getElementById(order.id).innerHTML=""
       dispatch('remove', {id: id_order});
     }
 </script>
