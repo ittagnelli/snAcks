@@ -1,4 +1,5 @@
 {#if order.can_delete}
+<div id={order.id}>
     <ListItem
         swipeout
         onSwipeoutDeleted={onDeleted}
@@ -8,6 +9,7 @@
             <SwipeoutButton delete>Delete</SwipeoutButton>
         </SwipeoutActions>
     </ListItem>
+</div>
 {:else}
     <ListItem
         swipeout    
@@ -33,6 +35,7 @@
     console.log(date_order);
 
     function onDeleted() {
+      document.getElementById(order.id).innerHTML=""
       dispatch('remove', {id: id_order});
     }
 </script>
