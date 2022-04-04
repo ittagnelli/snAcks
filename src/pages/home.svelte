@@ -157,7 +157,7 @@ async function order_snack() {
   selections[1].selected = false;
   selections[2].selected = false;
 
-  reg.update();
+  
   log.info("Order made to DB");
 }
 
