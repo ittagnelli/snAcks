@@ -1,4 +1,4 @@
-<Page name="about">
+<Page name="about" class="bg-color-white">
   <Navbar title={$title_bar} />
   <div>
     <img src="icons/144x144.png"alt="logo" />

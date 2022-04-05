@@ -1,4 +1,4 @@
-<Page name="storico" onPageTabShow={get_order}>
+<Page name="storico" onPageTabShow={get_order} class="bg-color-white">
   <Navbar title={$title_bar} />
   <Block>
     <p>

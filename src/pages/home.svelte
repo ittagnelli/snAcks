@@ -1,4 +1,4 @@
-<Page name="home" onPageInit={init_home} onPageTabShow={init_home}>
+<Page name="home" onPageInit={init_home} onPageTabShow={init_home} class="bg-color-white">
   <Navbar title={$title_bar} />
 
   <BlockTitle medium>Ordina qui la tua colazione</BlockTitle>

@@ -1,4 +1,4 @@
-<Page name="storico" onPageTabShow={calculate_total_orders}>
+<Page name="storico" onPageTabShow={calculate_total_orders} class="bg-color-white">
   <Navbar title={$title_bar} />
   <Block>
     <p>

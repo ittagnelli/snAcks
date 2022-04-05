@@ -1,4 +1,4 @@
-<Page name="feedback" onPageTabShow={enable_send}>
+<Page name="feedback" onPageTabShow={enable_send} class="bg-color-white">
   <Navbar title={$title_bar} />
     <BlockTitle>Fai sentire la tua voce!!</BlockTitle>
     <Block>

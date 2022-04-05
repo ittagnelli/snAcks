@@ -50,7 +50,7 @@
   let auth = null;
   const device = getDevice();
 
-  $title_bar = "snAcks v1.0RC1c";
+  $title_bar = "snAcks v1.0RC1e";
 
   let f7params = {
     name: 'snAcks', // App name
