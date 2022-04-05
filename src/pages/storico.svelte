@@ -31,19 +31,20 @@
 
   const HOUR_OF_ORDER = 14;
   let orders = [];
-  
+  // let new_orders;
   onMount(async () => {
 	});
 
-  const remove_order = (list, id) => list.filter(t => t.id !== id);
+  // const remove_order = (list, id) => list.filter(t => t.id !== id);
 
   async function onDeleted(event) {
     console.log(event.detail.id);
     console.log("ORDER PRIMA");
     console.log(orders);
     await delete_doc('snacks', event.detail.id);
+    // new_orders = orders.filter(t => t.id !== event.detail.id);
     f7.dialog.alert('Grazie, il tuo ordine è stato rimossod!');
-    orders = orders.filter(t => t.id !== event.detail.id);
+    
     console.log("ORDER DOPO");
     console.log(orders);    
   }
@@ -69,5 +70,6 @@
     });
 
     orders = raw_orders;
+    console.log(orders)
   }
 </script>
