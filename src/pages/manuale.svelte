@@ -6,7 +6,7 @@
                 <AccordionContent>
                     <Block>
                         <p>Se hai un iphone visualizza il seguente video per creare un app sulla schermata home: </p>
-                        <video src="/ios_video.mp4" controls>fdr</video>
+                        <video src="ios_video.mp4" controls>fdr</video>
                     </Block>
                 </AccordionContent>
             </ListItem> 
@@ -14,7 +14,7 @@
             <AccordionContent>
                 <Block>
                     <p>Se hai un Samsung, un Huawei, uno Xiaomi o un altro dispositivo Android visualizza il seguente video per creare un app sulla schermata home: </p>
-                    <video src="and_video.mp4" controls></video>
+                    <video src="ios_video.mp4" controls></video>
                 </Block>
             </AccordionContent>
         </ListItem> 

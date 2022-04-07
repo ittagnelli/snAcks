@@ -9,6 +9,7 @@
       <Col width="10"></Col>
       <Col width="80">
         <p class="dev">Andrea Canale (3INF)</p>
+        <p class="dev">Lorenzo Rizzolo (3INF)</p>
         <p class="dev">prof. Antonio Mancuso</p>
       </Col>
       <Col width="10"></Col>
