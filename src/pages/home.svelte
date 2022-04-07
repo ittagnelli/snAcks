@@ -1,5 +1,5 @@
 <Page name="home" onPageInit={get_user_order} onPageTabShow={get_user_order}>
-  <Navbar title={$title_bar} />
+  <Nav title={$title_bar}></Nav>
   <Card>
      <span slot="header">      
         <p class="cardtitle">Salati</p>
@@ -55,6 +55,7 @@
 </Page>
 
 <script>
+  import Nav from '../components/bar.svelte'
 import {
   Page,
   Stepper,

@@ -1,5 +1,5 @@
 <Page name="about">
-  <Navbar title={$title_bar} />
+  <Nav title={$title_bar}></Nav>
   <div>
     <img src="icons/144x144.png"alt="logo" />
     <h6>{$title_bar}</h6><br>
@@ -33,6 +33,7 @@
 <script>
     import {Page, Block, BlockTitle, Navbar, Link, Button, List, ListItem, AccordionContent, Row, Col} from 'framework7-svelte'
     import { user_email, last_feedback, title_bar } from '../js/snacks_store.js';
+    import Nav from '../components/bar.svelte'
     // import Policy from '../components/policy.svelte'
     
     function open() {
