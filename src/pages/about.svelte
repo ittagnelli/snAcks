@@ -1,5 +1,5 @@
 <Page name="about">
-  <Nav title="Informazioni"></Nav>
+  <Nav title={$title_bar}></Nav>
   <div>
     <img src="icons/144x144.png"alt="logo" />
     <h6>{$title_bar}</h6><br>

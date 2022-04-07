@@ -1,5 +1,5 @@
 <Page name="about">
-    <Navbar title=Manuale backLink="back"/>
+    <Navbar title={$title_bar} backLink="back"/>
     <BlockTitle>Installazione su Home telefono</BlockTitle>
     <List accordionList>
             <ListItem accordionItem title="IOS"> 

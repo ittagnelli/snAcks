@@ -1,5 +1,5 @@
 <Page name="storico" onPageTabShow={get_order}>
-  <Nav title="Storico"></Nav>
+  <Nav title={$title_bar}></Nav>
   <Block>
     <p>
       Storico degli ordini degli ultimi 5 giorni.
