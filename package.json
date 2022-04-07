@@ -7,7 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "npm run dev",
-    "dev": "cross-env NODE_ENV=development vite --port 2000",
+    "dev": "cross-env NODE_ENV=development vite ",
     "build": "cross-env NODE_ENV=production vite build && npx workbox generateSW workbox-config.js",
     "build-capacitor-ios": "cross-env NODE_ENV=production vite build && npx cap copy ios",
     "build-capacitor-android": "cross-env NODE_ENV=production vite build && npx cap copy android",
