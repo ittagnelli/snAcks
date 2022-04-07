@@ -1,6 +1,6 @@
 <Page name="feedback" onPageTabShow={enable_send} class="bg-color-white">
   <Navbar title={$title_bar} />
-    <BlockTitle>Fai sentire la tua voce!!</BlockTitle>
+    <BlockTitle medium>Fai sentire la tua voce!!</BlockTitle>
     <Block>
       <p>
         Usa questa pagina per segnalare problemi, idee, migliorie e per aiutarci a migliorare l'app snAcks!

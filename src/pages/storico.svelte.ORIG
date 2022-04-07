@@ -1,14 +1,21 @@
 <Page name="storico" onPageTabShow={get_order} class="bg-color-white">
   <Navbar title={$title_bar} />
-  <BlockTitle>Ultimi 5 ordini</BlockTitle>
+  <Block>
+    <p>
+      Storico degli ordini degli ultimi 5 giorni.
+    </p>
+    <p>
+      Puoi cancellare gli ordini in corso.
+    </p>
+  </Block>
 
-  <BlockTitle>Ordine del 4444</BlockTitle>
+  <BlockTitle>Ordini</BlockTitle>
+  
   <List>
     {#each orders as order}
       <OrderItem order={order} on:remove={onDeleted} />
     {/each}
   </List>
-
 </Page>
   
 
@@ -46,25 +53,20 @@
     console.log("ENTRO IN STORICO");
     // orders.length = 0;
     let raw_orders = await get_orders_by_email($user_email);
-    let current_millis = new Date().getTime();
-
-    console.log(current_millis);
-    
-    // let current_date = new Date();
-    // let current_hh = current_date.getHours();
-    // current_date.setHours(23);
-    // current_date.setMinutes(59);
-    // current_date.setSeconds(0);
-    // current_date.setMilliseconds(0);
-    // let millis_tomorrow = current_date.getTime() + 60000;
+    let current_date = new Date();
+    let current_hh = current_date.getHours();
+    current_date.setHours(23);
+    current_date.setMinutes(59);
+    current_date.setSeconds(0);
+    current_date.setMilliseconds(0);
+    let millis_tomorrow = current_date.getTime() + 60000;
    
     console.log(`####### ${raw_orders.length} #########`);
     raw_orders.forEach((order) => {
-      order['can_delete'] = (order.order.millis_order - current_millis) > 43200000 ? true : false;
-      // if (current_hh < HOUR_OF_ORDER)
-      //   order['can_delete'] = order.order.millis_order >= millis_tomorrow;
-      // else 
-      //   order['can_delete'] = order.order.millis_order > millis_tomorrow;
+      if (current_hh < HOUR_OF_ORDER)
+        order['can_delete'] = order.order.millis_order >= millis_tomorrow;
+      else 
+        order['can_delete'] = order.order.millis_order > millis_tomorrow;
     });
 
     orders = raw_orders;

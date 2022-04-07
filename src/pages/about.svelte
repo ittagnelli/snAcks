@@ -42,7 +42,7 @@
 
 <style>
    .dev {
-     color: yellow;
+     /* color: yellow; */
      font-size: 1.2rem;
    }
 

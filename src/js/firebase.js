@@ -33,7 +33,6 @@ export async function get_orders_by_email(email) {
     const querySnapshot = await getDocs(q);
     
     querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         orders.push({
             id: doc.id,
             order: doc.data()

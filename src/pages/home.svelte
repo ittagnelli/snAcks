@@ -50,8 +50,6 @@ const N_SKEW_DAYS = 2;
 let log = create_logger('home.svelte');
 let snackbar = false;
 let can_order = false; //control the order button
-let num_salati = 0;
-let num_dolci = 0;
 let today; // current day
 let calendar = []; // calendar of orders
 let list_food = food_list; //list of food item 
@@ -70,14 +68,13 @@ $: {
   calendar.forEach(day => {
     can_order = can_order || day.selected;
   });
-  
+
   let total_food = 0;
-  food_list.forEach(food => {
+  list_food.forEach(food => {
     total_food += food.count;
   })
-  can_order &= (total_food > 0 ? true: false);
+  can_order &= (total_food > 0 ? true: false); 
 }
-
 
 async function order_snack() {
   //get food with count > 0
