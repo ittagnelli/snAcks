@@ -1,5 +1,5 @@
 <Page name="home" onPageInit={init_home} onPageTabShow={init_home} class="bg-color-white">
-  <Navbar title={$title_bar} />
+  <Nav title={$title_bar}></Nav>
 
   <BlockTitle medium>Ordina qui la tua colazione</BlockTitle>
   <List mediaList>
@@ -40,6 +40,7 @@ import { create_order } from '../js/model.js';
 import { food_list, resert_food_count, update_food_list } from '../js/food_list.js';
 import FoodItem from '../components/food_item.svelte';
 import { Snackbar} from 'svelte-materialify';
+import Nav from '../components/bar.svelte';
 
 export let f7router;
 export let f7route;

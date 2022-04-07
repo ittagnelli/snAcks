@@ -50,6 +50,21 @@ export async function get_orders_by_user_date(email, order_date) {
     return querySnapshot.size;
 }
 
+export async function get_order_by_user_date(email, order_date) {
+    console.log(email);
+    console.log(order_date);
+    const q = query(collection(db, "snacks"), 
+                    where("email", "==", email),
+                    where("date_order", "==", order_date));
+    const querySnapshot = await getDocs(q);
+
+    if(querySnapshot.size > 0)
+        return querySnapshot.docs[0].data();
+    else
+        return null;
+}
+
+
 export async function get_orders_by_date(order_date) {
     let num_salato = 0;
     let num_dolce = 0;

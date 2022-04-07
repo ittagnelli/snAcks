@@ -9,14 +9,16 @@
         src="{img}"
         width="80"
     />
+   
     <span slot="after">
-        <!-- <Toggle /> -->
+        {#if ro == false}
         <i class="icon f7-icons cart">cart_fill
-            <!-- <span class="badge color-blue counter">{counter}</span> -->
             <span class="badge color-blue counter">{count > 0 ? count : "--"}</span>
         </i>
-    </span> 
-    
+        {:else}
+            <span class="badge color-green counter-ro">{count > 0 ? count : "--"}</span>
+        {/if}                
+    </span>  
 </ListItem>
 
 <script>
@@ -28,34 +30,22 @@
     export let subtype = "";
     export let img = "";
     export let price = 0.0;
-
-    // let counter = "--";
     export let count;
-
-    // function tap() {
-    //     count++;
-    //     if (count > 2)
-    //         count = 0;
-    //     counter = count > 0 ? count : "--";
-    //     console.log(counter);
-    //     dispatch('change', {count: count});
-    // }
+    export let ro = false;
 
     function tap() {
-        count++;
-        if (count > 2)
-            count = 0;
-        // counter = count > 0 ? count : "--";
-        // console.log(counter);
-        dispatch('change', {count: count});
+        if (ro == false) {
+            count++;
+            if (count > 2)
+                count = 0;
+            dispatch('change', {count: count});
+        }
     }
-
-   
 </script>
 
 <style>
     .cart {
-        /* font-size: 30px; */
+        /* font-size: 40px; */
         position: relative;
         right: 10px;
         top: 20px;
@@ -65,5 +55,14 @@
         width: 20px;
         height: 20px;
         font-size: 12px;
+    }
+
+    .counter-ro {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+        position: relative;
+        right: 10px;
+        top: 20px;
     }
 </style>
