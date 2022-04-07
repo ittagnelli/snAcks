@@ -1,5 +1,5 @@
 <Page name="feedback" onPageTabShow={enable_send}>
-  <Navbar title={$title_bar} />
+  <Nav title={$title_bar}></Nav>
     <BlockTitle>Fai sentire la tua voce!!</BlockTitle>
     <Block>
       <p>
@@ -49,6 +49,7 @@
     import { f7, Page, Navbar, Block, BlockTitle, Input, Button, Row, Col } from 'framework7-svelte';
     import { user_email, last_feedback, title_bar } from '../js/snacks_store.js';
     import { Snackbar} from 'svelte-materialify';
+    import Nav from '../components/bar.svelte'
     
     let issue_title = '';
     let issue_message = '';

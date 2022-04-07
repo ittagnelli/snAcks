@@ -1,5 +1,5 @@
 <Page name="storico" onPageTabShow={calculate_total_orders}>
-  <Navbar title={$title_bar} />
+  <Nav title={$title_bar}></Nav>
   <Block>
     <p>
       Totale ordini giornalieri per tipo di alimento
