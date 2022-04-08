@@ -1,8 +1,6 @@
 /* Invert navigation bars to fill style */
 html, body {
-  margin: 0; 
-  height: 100%; 
-  overflow: hidden
+  position: fixed;
 }
 
 :root,

@@ -39,13 +39,25 @@
     <p id="snack_ok">Ordine effettuato correttamente!!</p>
   </Snackbar>
   
-  {#if can_order == true}
+  {#if can_order == false}
   <Block>
     <Block strong>
       <Row tag="p">
         <Col tag="span"></Col>
         <Col tag="span">
-          <Button raised fill onClick={order_snack} color="green">Ordina</Button>
+          <Button raised fill onClick={order_snack} color="green" disabled>Ordina</Button>
+        </Col>
+        <Col tag="span"></Col>
+      </Row>
+    </Block>
+  </Block>
+  {:else}
+  <Block>
+    <Block strong>
+      <Row tag="p">
+        <Col tag="span"></Col>
+        <Col tag="span">
+          <Button raised fill onClick={order_snack} color="green" >Ordina</Button>
         </Col>
         <Col tag="span"></Col>
       </Row>
