@@ -29,3 +29,6 @@ L'applicazione ha i seguenti requisiti minimi:
     - il numero complessivo di merende prenotatre suddiviso per categoria di merenda per i giorni da X+1 a X+3
 - L'applicazione deve avere un nome ed un logo chiaramente identificabili
 - L'applicazione deve essere sviluppata usando tecnologie Web
+
+
+
