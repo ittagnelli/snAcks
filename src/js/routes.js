@@ -5,6 +5,8 @@ import LoginPage from '../pages/login.svelte';
 import AboutPage from '../pages/about.svelte';
 import FeedbackPage from '../pages/feedback.svelte';
 import Manuale from '../pages/manuale.svelte';
+import Ritiro from '../pages/ritiro.svelte';
+
 
 var routes = [
   {
@@ -34,6 +36,10 @@ var routes = [
   {
     path: '/manuale/',
     component: Manuale,
+  },
+  {
+    path: '/ritiro/',
+    component: Ritiro,
   }
 ];
 
