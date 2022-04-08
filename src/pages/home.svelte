@@ -22,7 +22,7 @@
       <Row tag="p">
         <Col tag="span"></Col>
         <Col tag="span">
-          <Button raised fill onClick={order_snack} color="green" large><strong>Ordina</strong></Button>
+          <Button raised fill onClick={order_snack} color="green" large disabled={!can_order}><strong>Ordina</strong></Button>
         </Col>
         <Col tag="span"></Col>
       </Row>
