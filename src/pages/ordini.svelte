@@ -1,130 +1,86 @@
-<Page name="storico" onPageTabShow={calculate_total_orders}>
-  <Nav title={$title_bar}></Nav>
-  <Block>
-    <p>
-      Totale ordini giornalieri per tipo di alimento
-    </p>
-   
-  </Block>
-
-  <BlockTitle>Totale Ordini per il {day1}</BlockTitle>
-  <List>
-    <ListItem  
-      title="Dolce"
-      after={dolce_1}>  
-    </ListItem>
-    <ListItem  
-      title="Salato"
-      after={salato_1}>  
-    </ListItem>
-  </List> 
+<Page name="ordini" onPageTabShow={calculate_total_orders}  class="bg-color-white">
+  <Nav title={$title_bar} />  
   
-  <BlockTitle>Totale Ordini per il {day2}</BlockTitle>
-  <List>
-    <ListItem  
-      title="Dolce"
-      after={dolce_2}>  
-    </ListItem>
-    <ListItem  
-      title="Salato"
-      after={salato_2}>  
-    </ListItem>
-  </List> 
-
-  <BlockTitle>Totale Ordini per il {day3}</BlockTitle>
-  <List>
-    <ListItem  
-    title="Dolce"
-    after={dolce_3}>  
-  </ListItem>
-  <ListItem  
-    title="Salato"
-    after={salato_3}>  
-  </ListItem>
-  </List> 
-
-  <BlockTitle>Totale Ordini per il {day4}</BlockTitle>
-  <List>
-    <ListItem  
-    title="Dolce"
-    after={dolce_4}>  
-  </ListItem>
-  <ListItem  
-    title="Salato"
-    after={salato_4}>  
-  </ListItem>
-  </List> 
-
-  <!-- <List>
-    {#each orders as order}
-      <OrderItem order={order} on:remove={onDeleted} />
-    {/each}
-  </List> -->
+  {#if loading == true}
+  <BlockTitle large class="text-align-center">Ricerca ordine</BlockTitle>
+    <div class="preload">
+      <Preloader color="multi" size={60}  />
+    </div>
+  {:else}
+    {#if list_food.length > 0}
+      {#each list_food as food}
+        <BlockTitle medium>Ordine del giorno {food.day}</BlockTitle>
+        <List mediaList>
+          {#each food.orders as item}
+              <FoodItem type="{item.type}" subtype="{item.subtype}" img="{item.img}" price={item.price} count={item.count} ro={true} />
+          {/each}
+        </List>
+      {/each}
+    {:else}
+      <p>Non ci sono ordini pendenti</p>  
+      <div class="no-order-box">
+        <i class="icon f7-icons color-red no-order">multiply_circle_fill</i>
+      </div>
+    {/if}
+  {/if}
 </Page>
-  
 
 <script>
-  import { onMount } from 'svelte';
-  import { Badge, f7, Button, Page, Navbar, Block, BlockTitle, List, ListItem } from 'framework7-svelte';
+  import { Page, Block, BlockTitle, Navbar, Link, Button, List, ListItem, AccordionContent, Row, Col, Preloader } from 'framework7-svelte'
+  import { user_email, last_feedback, title_bar } from '../js/snacks_store.js';
   import { get_orders_by_date } from '../js/firebase.js';
-  import { user_email, title_bar } from '../js/snacks_store.js';
+  import Nav from '../components/bar.svelte';
+  import FoodItem from '../components/food_item.svelte';
+  import { calc_next_N_days } from '../js/helpers.js';
 
-  export let f7router; // this is just to avoid a warning
-  export let f7route;
-  let today = new Date();
-  let day1 = nextBizDay(today).toLocaleDateString("it-IT")
-  let day2 = nextBizDay(today).toLocaleDateString("it-IT")
-  let day3 = nextBizDay(today).toLocaleDateString("it-IT")
-  let day4 = nextBizDay(today).toLocaleDateString("it-IT")
-
-  let dolce_1 = 0;
-  let salato_1 = 0;
-  let dolce_2 = 0;
-  let salato_2 = 0;
-  let dolce_3 = 0;
-  let salato_3 = 0;
-  let dolce_4 = 0;
-  let salato_4 = 0;
-
-  // const HOUR_OF_ORDER = 14;
-  // let orders = [];
+  const N_ORDER_DAYS = 2;
+  let today;
+  let list_food = [];
+  let days = [];
+  let loading = true;
   
-  onMount(async () => {
-	});
-
-  
-  function nextBizDay(start) {
-    do {
-      start.setDate(start.getDate() + 1);
-    } while (start.getDay() == 0 || start.getDay() == 6)
-    return start
-  }
 
   async function calculate_total_orders() {
+    list_food.length = 0;
+    days.length = 0;
+    loading = true;
+   
+    days = calc_next_N_days(new Date(), N_ORDER_DAYS);
+    for(const day of days) {
+      let orders = await get_orders_by_date(day);
+      console.log("XXXXXXx");
+      console.log(typeof(orders))
+      console.log(orders);
+      // orders["day"] = day; 
+      // list_food.push(Object.values(orders));
+      list_food.push({day: day, orders: orders});
+    }   
     
-    console.log(day1);
-    console.log(day2);
-    console.log(day3);
-    console.log(day4);
-    
-    let orders1 = await get_orders_by_date(day1);
-    let orders2 = await get_orders_by_date(day2);
-    let orders3 = await get_orders_by_date(day3);
-    let orders4 = await get_orders_by_date(day4);
-
-    dolce_1 = orders1.num_dolce;
-    salato_1 = orders1.num_salato;
-    dolce_2 = orders2.num_dolce;
-    salato_2 = orders2.num_salato;
-    dolce_3 = orders3.num_dolce;
-    salato_3 = orders3.num_salato;
-    dolce_4 = orders4.num_dolce;
-    salato_4 = orders4.num_salato;
-
-    console.log(orders1);
-    console.log(orders2);
-    console.log(orders3);
-    console.log(orders4);
-
+    list_food = list_food;
+    loading = false;
+    console.log("LIST FOOD")
+    console.log(list_food);
   }
 </script>
+
+<style>
+  .no-order {
+    font-size: 100px; 
+  }
+
+  .no-order-box {
+    text-align: center;
+    margin: 30px;
+  }
+
+  p {
+    text-align: center;
+    font-size: 40px;
+    padding: 10px;
+  }
+
+  .preload {
+    text-align: center;
+    padding-top: 100px;
+  }
+</style>

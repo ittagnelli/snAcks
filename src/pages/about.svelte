@@ -1,5 +1,5 @@
-<Page name="about">
-  <Nav title={$title_bar}></Nav>
+<Page name="about" class="bg-color-white">
+  <Navbar title={$title_bar} backLink="back"/>
   <div>
     <img src="icons/144x144.png"alt="logo" />
     <h6>{$title_bar}</h6><br>
@@ -9,6 +9,7 @@
       <Col width="10"></Col>
       <Col width="80">
         <p class="dev">Andrea Canale (3INF)</p>
+        <p class="dev">Lorenzo Rizzolo (3INF)</p>
         <p class="dev">prof. Antonio Mancuso</p>
       </Col>
       <Col width="10"></Col>
@@ -43,7 +44,7 @@
 
 <style>
    .dev {
-     color: yellow;
+     /* color: yellow; */
      font-size: 1.2rem;
    }
 

@@ -1,21 +1,14 @@
-<Page name="storico" onPageTabShow={get_order}>
-  <Nav title={$title_bar}></Nav>
-  <Block>
-    <p>
-      Storico degli ordini degli ultimi 5 giorni.
-    </p>
-    <p>
-      Puoi cancellare gli ordini in corso.
-    </p>
-  </Block>
+<Page name="storico" onPageTabShow={get_order} class="bg-color-white">
+  <Nav title={$title_bar} />
+  <BlockTitle>Ultimi 5 ordini</BlockTitle>
 
-  <BlockTitle>Ordini</BlockTitle>
-  
+  <BlockTitle>Ordine del 4444</BlockTitle>
   <List>
     {#each orders as order}
       <OrderItem order={order} on:remove={onDeleted} />
     {/each}
   </List>
+
 </Page>
   
 
@@ -25,7 +18,8 @@
   import { get_orders_by_email, delete_doc } from '../js/firebase.js';
   import { user_email, title_bar } from '../js/snacks_store.js';
   import OrderItem from '../components/list_swipe.svelte';
-import Nav from '../components/bar.svelte'
+  import Nav from '../components/bar.svelte'
+  
   export let f7router; // this is just to avoid a warning
   export let f7route;
 
@@ -53,20 +47,25 @@ import Nav from '../components/bar.svelte'
     console.log("ENTRO IN STORICO");
     // orders.length = 0;
     let raw_orders = await get_orders_by_email($user_email);
-    let current_date = new Date();
-    let current_hh = current_date.getHours();
-    current_date.setHours(23);
-    current_date.setMinutes(59);
-    current_date.setSeconds(0);
-    current_date.setMilliseconds(0);
-    let millis_tomorrow = current_date.getTime() + 60000;
+    let current_millis = new Date().getTime();
+
+    console.log(current_millis);
+    
+    // let current_date = new Date();
+    // let current_hh = current_date.getHours();
+    // current_date.setHours(23);
+    // current_date.setMinutes(59);
+    // current_date.setSeconds(0);
+    // current_date.setMilliseconds(0);
+    // let millis_tomorrow = current_date.getTime() + 60000;
    
     console.log(`####### ${raw_orders.length} #########`);
     raw_orders.forEach((order) => {
-      if (current_hh < HOUR_OF_ORDER)
-        order['can_delete'] = order.order.millis_order >= millis_tomorrow;
-      else 
-        order['can_delete'] = order.order.millis_order > millis_tomorrow;
+      order['can_delete'] = (order.order.millis_order - current_millis) > 43200000 ? true : false;
+      // if (current_hh < HOUR_OF_ORDER)
+      //   order['can_delete'] = order.order.millis_order >= millis_tomorrow;
+      // else 
+      //   order['can_delete'] = order.order.millis_order > millis_tomorrow;
     });
 
     orders = raw_orders;

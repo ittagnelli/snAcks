@@ -1,4 +1,5 @@
-export function create_order(email, date_order, qty_dolce, qty_salato) {
+// export function create_order(email, date_order, qty_dolce, qty_salato) {
+export function create_order(email, date_order, food_list) {
     let current_date = new Date();
     let yy = date_order.split('/')[2];
     let mm = date_order.split('/')[1];
@@ -10,11 +11,10 @@ export function create_order(email, date_order, qty_dolce, qty_salato) {
             millis_request: current_date.getTime(),
             email: email,
             date_order: date_order,
-            yy_order: yy,
-            mm_order: mm,
-            dd_order: dd,
+            // yy_order: yy,
+            // mm_order: mm,
+            // dd_order: dd,
             millis_order: millis,
-            qty_dolce,
-            qty_salato
+            food_list
         }
     }

@@ -20,21 +20,6 @@ html, body {
   --f7-sheet-border-color: transparent;
   --f7-tabbar-link-active-border-color: #fff;
 }
-.cardtitle{
-  position: absolute;
-  top: -5px;
-}
-.selezione{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-.imgcard{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
-}
 .appbar,
 .navbar,
 .toolbar,

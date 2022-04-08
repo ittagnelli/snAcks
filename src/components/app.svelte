@@ -1,12 +1,11 @@
-<App { ...f7params } themeDark>
+<App { ...f7params }>
   {#if $user_authenticated == "true"}
   <Views tabs class="safe-areas">
     <Toolbar tabbar labels bottom>
-      <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home"
-      />
-      <Link tabLink="#view-storico" iconIos="f7:clock" iconAurora="f7:clock" iconMd="f7:clock" text="Storico" />
+      <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home" />
+      <Link tabLink="#view-ritiro" iconIos="f7:bag" iconAurora="f7:bag" iconMd="material:bag" text="Ritiro" />
+      <!-- <Link tabLink="#view-storico" iconIos="f7:clock" iconAurora="f7:clock" iconMd="f7:clock" text="Storico" /> -->
       <Link tabLink="#view-feedback" iconIos="f7:arrow_2_circlepath_circle" iconAurora="f7:arrow_2_circlepath_circle" iconMd="f7:arrow_2_circlepath_circle" text="Feedback" />
-      <Link tabLink="#view-about" iconIos="f7:info_circle" iconAurora="f7:info_circle" iconMd="f7:info_circle" text="Informazioni" />
       {#if $user_email == "economo@istitutoagnelli.it" || 
            $user_email == "espedito.mancuso@istitutoagnelli.it" ||
            $user_email == "andrea.canale@istitutoagnelli.it"}
@@ -14,8 +13,8 @@
       {/if}
       </Toolbar>
     <View id="view-home" main tab tabActive url="/" />
-    <View id="view-about" name="about" tab url="/about/" />
-    <View id="view-storico" name="catalog" tab url="/storico/" />
+    <View id="view-ritiro" name="ritiro" tab url="/ritiro/" />
+    <!-- <View id="view-storico" name="catalog" tab url="/storico/" /> -->
     <View id="view-feedback" name="feedback" tab url="/feedback/" />
     {#if $user_email == "economo@istitutoagnelli.it" || 
            $user_email == "espedito.mancuso@istitutoagnelli.it" ||
@@ -50,7 +49,7 @@
   let auth = null;
   const device = getDevice();
 
-  $title_bar = "snAcks v0.5";
+  $title_bar = "snAcks v1.0 RC1-g";
 
   let f7params = {
     name: 'snAcks', // App name
