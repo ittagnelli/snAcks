@@ -33,7 +33,6 @@ export async function get_orders_by_email(email) {
     const querySnapshot = await getDocs(q);
     
     querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
         orders.push({
             id: doc.id,
             order: doc.data()
@@ -51,69 +50,39 @@ export async function get_orders_by_user_date(email, order_date) {
     return querySnapshot.size;
 }
 
+export async function get_order_by_user_date(email, order_date) {
+    console.log(email);
+    console.log(order_date);
+    const q = query(collection(db, "snacks"), 
+                    where("email", "==", email),
+                    where("date_order", "==", order_date));
+    const querySnapshot = await getDocs(q);
+
+    if(querySnapshot.size > 0)
+        return querySnapshot.docs[0].data();
+    else
+        return null;
+}
+
+
 export async function get_orders_by_date(order_date) {
-    let num_salato = 0;
-    let num_dolce = 0;
+    let qtys = {};
 
     const q = query(collection(db, "snacks"), 
                     where("date_order", "==", order_date));
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
-        num_salato += doc.data().qty_salato;
-        num_dolce += doc.data().qty_dolce;
+        doc.data().food_list.forEach((food) => {
+            if(food.id in qtys)
+                qtys[food.id].count += food.count;
+            else
+                qtys[food.id] = food;
+        })
     });
-
-    return {
-            "num_dolce": num_dolce,
-            "num_salato": num_salato
-        };
-}
-
-// export async function search_by_token(token, field) {
-//     const q = query(collection(db, "directory"), where(field, ">=", token), where(field, "<", token + 'z'));
-//     const querySnapshot = await getDocs(q);
-//     return querySnapshot;
-// }
-
-
-
-//legeg una collezione e restituisce solo i documenti che fanno match con filterArray
-// export async function read_coll(coll, filterArray) {
-//     let q1 = new query();
-//     q1.where("colore", "==", "giallo");
     
-//     const querySnapshot = await getDocs(q1);
-//     querySnapshot.forEach((doc) => {
-//         console.log(doc.id, " => ", doc.data());
-//     });
-
-// }
-
-
-//legeg una collezione e restituisce solo i documenti che fanno match con filterArray
-// export async function read_coll(collection, filterArray) {
-//     let documents =[];
-
-//     try {
-//           let query = db.collection(collection);
-//           query = filterArray.reduce((accQuery, filter) => {
-//               return accQuery.where(filter.field, filter.op, filter.value);
-//             }, query);
-
-//           await query
-//           .get()
-//           .then(docs => {
-//               docs.forEach(doc => {
-//                   documents = [...documents, doc.data()];
-//                 });
-//             });
-//     }
-//     catch(e) {
-//         log.error(e);
-//     }
-//     return documents;
-// }
+    return Object.values(qtys);
+}
 
 //scrive un documento con uno specifico nome in una specifica collezione
 export async function write_doc(record, coll, docname) {
