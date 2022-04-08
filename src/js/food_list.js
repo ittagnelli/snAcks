@@ -1,5 +1,6 @@
 export let food_list = [ 
     {
+      id: 1,
       type: "Pizzetta",
       subtype: "Margherita",
       img: "pizzetta.png",
@@ -7,6 +8,7 @@ export let food_list = [
       count: 0
     },
     {
+      id: 2,
       type: "Focaccina",
       subtype: "",
       img: "focaccina.png",
@@ -14,6 +16,7 @@ export let food_list = [
       count: 0
     },  
     {
+      id: 3,
       type: "Panino",
       subtype: "Prosciutto Cotto",
       img: "prosciutto.png",
@@ -21,6 +24,7 @@ export let food_list = [
       count: 0
     },  
     {
+      id: 4,
       type: "Panino",
       subtype: "Salame",
       img: "salame.png",
@@ -28,6 +32,7 @@ export let food_list = [
       count: 0
     },  
     {
+      id: 5,
       type: "Cannolo",
       subtype: "Crema",
       img: "cannolocr.png",
@@ -35,6 +40,7 @@ export let food_list = [
       count: 0
     },  
     {
+      id: 6,
       type: "Cannolo",
       subtype: "Cioccolato",
       img: "cannoloci.png",
@@ -42,6 +48,7 @@ export let food_list = [
       count: 0
     },  
     {
+      id: 7,
       type: "Croissant",
       subtype: "Cioccolato",
       img: "croissant.png",
@@ -49,6 +56,7 @@ export let food_list = [
       count: 0
     },  
     {
+      id: 8,
       type: "Saccottino",
       subtype: "Crema e Cioccolato",
       img: "saccottino.png",
@@ -56,6 +64,7 @@ export let food_list = [
       count: 0
     },  
     {
+      id: 9,
       type: "Bombolone",
       subtype: "Crema",
       img: "bombolonecr.png",
@@ -63,6 +72,7 @@ export let food_list = [
       count: 0
     },  
     {
+      id: 10,
       type: "Bombolone",
       subtype: "Cioccolato",
       img: "bomboloneci.png",

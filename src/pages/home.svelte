@@ -41,12 +41,12 @@ import { food_list, resert_food_count, update_food_list } from '../js/food_list.
 import FoodItem from '../components/food_item.svelte';
 import { Snackbar} from 'svelte-materialify';
 import Nav from '../components/bar.svelte';
+import { calc_next_N_days } from '../js/helpers.js';
 
 export let f7router;
 export let f7route;
 
 const N_ORDER_DAYS = 3;
-const N_SKEW_DAYS = 2;
 
 let log = create_logger('home.svelte');
 let snackbar = false;
@@ -106,32 +106,13 @@ async function order_snack() {
   log.info("Order made to DB");
 }
 
-//find the next school day
-function find_next_school_day(start) {
-  do {
-    start.setDate(start.getDate() + 1);
-  } while (start.getDay() == 0 || start.getDay() == 6)
-  return start
-}
-
-//calculate the next n_days school days a user can order
-function calc_next_N_days(n_days) {
-  let days = [];
-
-  today.setDate(today.getDate() + N_SKEW_DAYS); //skip N_SKEW_DAYS days
-  for(let i = 0; i < n_days; i++)
-    days.push(find_next_school_day(today).toLocaleDateString("it-IT"));
-
-  return days;
-}
-
 //init home environment to make orders
 async function init_home() {
   let days = [];
   calendar.length = 0;
   today = new Date();
 
-  days = calc_next_N_days(N_ORDER_DAYS);
+  days = calc_next_N_days(today, N_ORDER_DAYS);
   days.forEach(async (day) =>  {
     let can_order_by_date =  await get_orders_by_user_date($user_email, day);
     let calendar_day = { 
