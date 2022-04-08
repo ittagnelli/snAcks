@@ -5,7 +5,8 @@
             <ListItem accordionItem title="IOS"> 
                 <AccordionContent>
                     <Block>
-                        <p>Se hai un iphone visualizza il seguente video per creare un app sulla schermata home: </p>
+                        <p>Se hai un iphone visualizza il seguente video per installare snAcks sulla schermata home. </p>
+                        <p>E' preferibile effettuare l'installazione tramite il browser standard per iOS: SAFARI</p>
                         <video src="ios_video.mp4" controls>fdr</video>
                     </Block>
                 </AccordionContent>
@@ -14,6 +15,7 @@
             <AccordionContent>
                 <Block>
                     <p>Se hai un Samsung, un Huawei, uno Xiaomi o un altro dispositivo Android visualizza il seguente video per creare un app sulla schermata home: </p>
+                    <p>E' preferibile effettuare l'installazione tramite il browser standard per Android: CHROME</p>
                     <video src="android_video.mp4" controls></video>
                 </Block>
             </AccordionContent>
@@ -65,6 +67,9 @@
   <script>
       import {Page, Block, BlockTitle, Navbar, Link, Button, List, ListItem, AccordionContent, Row, Col} from 'framework7-svelte'
       import { user_email, last_feedback, title_bar } from '../js/snacks_store.js';
+
+      export let f7router; // this is just to avoid a warning
+      export let f7route;
       
       function open() {
           window.open("https://github.com/ittagnelli/snAcks")

@@ -33,6 +33,9 @@
     import FoodItem from '../components/food_item.svelte';
     import Hash from '../components/hash.svelte';
 
+    export let f7router; // this is just to avoid a warning
+    export let f7route;
+
     let today;
     let list_food = [];
     let loading = true;

@@ -33,6 +33,9 @@
   import FoodItem from '../components/food_item.svelte';
   import { calc_next_N_days } from '../js/helpers.js';
 
+  export let f7router; // this is just to avoid a warning
+  export let f7route;
+
   const N_ORDER_DAYS = 2;
   let today;
   let list_food = [];
@@ -48,18 +51,11 @@
     days = calc_next_N_days(new Date(), N_ORDER_DAYS);
     for(const day of days) {
       let orders = await get_orders_by_date(day);
-      console.log("XXXXXXx");
-      console.log(typeof(orders))
-      console.log(orders);
-      // orders["day"] = day; 
-      // list_food.push(Object.values(orders));
       list_food.push({day: day, orders: orders});
     }   
     
     list_food = list_food;
     loading = false;
-    console.log("LIST FOOD")
-    console.log(list_food);
   }
 </script>
 
