@@ -18,15 +18,14 @@
     <p id="snack_ok">Ordine effettuato correttamente!!</p>
   </Snackbar>
   
-  {#if can_order == true}
-      <Row tag="p">
-        <Col tag="span"></Col>
-        <Col tag="span">
-          <Button raised fill onClick={order_snack} color="green" large disabled={!can_order}><strong>Ordina</strong></Button>
-        </Col>
-        <Col tag="span"></Col>
-      </Row>
-  {/if}
+  <Row tag="p">
+    <Col tag="span"></Col>
+    <Col tag="span">
+      <Button raised fill onClick={order_snack} color="green" large disabled={!can_order}><strong>Ordina</strong></Button>
+    </Col>
+    <Col tag="span"></Col>
+  </Row>
+
 </Page>
 
 <script>
