@@ -36,7 +36,7 @@
   export let f7router; // this is just to avoid a warning
   export let f7route;
 
-  const N_ORDER_DAYS = 2;
+  const N_ORDER_DAYS = 3;
   let today;
   let list_food = [];
   let days = [];

@@ -33,14 +33,30 @@
                     </Block>
                 </AccordionContent>
             </ListItem> 
-        <ListItem accordionItem title="Feedback"> 
-            <AccordionContent>
-                <Block>
-                    <p>Puoi usare la sezione "Feedback" per comunicarci errori, idee, miglioramenti o inviarci dei suggerimenti.</p>
-                    <p>Compila il titolo e fornisci una breve descrizione del problema o del suggerimento.</p>
-                </Block>
-            </AccordionContent>
-        </ListItem> 
+            <ListItem accordionItem title="Storico"> 
+                <AccordionContent>
+                    <Block>
+                        <p>Puoi visualizzare i tuoi ultimi 5 ordini.</p>
+                        <p>Gli ordini più recenti possono essere rimossi premendo il pulsante <b>Rimuovi</b></p>
+                    </Block>
+                </AccordionContent>
+            </ListItem>
+            <ListItem accordionItem title="Ritiro"> 
+                <AccordionContent>
+                    <Block>
+                        <p>Questa pagina è utile al momento del ritiro della colazione in cortilo o in mensa</p>
+                        <p>Mostrala all'addetto alle consegne per poter ritirare la tua colazione.</p>
+                    </Block>
+                </AccordionContent>
+            </ListItem>
+            <ListItem accordionItem title="Feedback"> 
+                <AccordionContent>
+                    <Block>
+                        <p>Puoi usare la sezione "Feedback" per comunicarci errori, idee, miglioramenti o inviarci dei suggerimenti.</p>
+                        <p>Compila il titolo e fornisci una breve descrizione del problema o del suggerimento.</p>
+                    </Block>
+                </AccordionContent>
+            </ListItem>  
     </List>
 
     <BlockTitle medium>Ritiro</BlockTitle>
