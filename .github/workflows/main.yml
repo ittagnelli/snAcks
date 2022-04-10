@@ -1,4 +1,7 @@
-on: push
+on:
+  push:
+    branches:
+      - main
 name: 🚀 Build and Deploy snAcks!
 jobs:
   web-deploy:
@@ -20,5 +23,5 @@ jobs:
     
     - name: 📂 Upload files to ats.agnelli.it/snacks
       run: |
-        sshpass -p ${{ secrets.SCP_PASSWD }} scp -o StrictHostKeyChecking=no -r www/ ${{ secrets.SCP_CONNSTRING }}:snacks/
+        sshpass -p ${{ secrets.SCP_PASSWD }}  scp -o StrictHostKeyChecking=no -r www/*  ${{ secrets.SCP_CONNSTRING }}:snacks/
         
