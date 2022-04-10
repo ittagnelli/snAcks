@@ -4,7 +4,7 @@
     <Toolbar tabbar labels bottom>
       <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home" />
       <Link tabLink="#view-storico" iconIos="f7:clock" iconAurora="f7:clock" iconMd="f7:clock" text="Storico" />
-      <Link tabLink="#view-ritiro" iconIos="f7:bag" iconAurora="f7:bag" iconMd="material:bag" text="Ritiro" />
+      <Link tabLink="#view-ritiro" iconIos="f7:bag" iconAurora="f7:bag" iconMd="f7:bag" text="Ritiro" />
       <Link tabLink="#view-feedback" iconIos="f7:arrow_2_circlepath_circle" iconAurora="f7:arrow_2_circlepath_circle" iconMd="f7:arrow_2_circlepath_circle" text="Feedback" />
       {#if $user_email == "economo@istitutoagnelli.it" || 
            $user_email == "espedito.mancuso@istitutoagnelli.it" ||
@@ -49,7 +49,7 @@
   let auth = null;
   const device = getDevice();
 
-  $title_bar = "snAcks v1.0";
+  $title_bar = "snAcks v1.1";
 
   let f7params = {
     name: 'snAcks', // App name
