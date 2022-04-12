@@ -6,8 +6,8 @@ android {
         applicationId "com.ats.snacks"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -41,13 +41,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.3.0')
 
     // When using the BoM, you don't specify versions in Firebase library dependencies
-
-    // Declare the dependency for the Firebase SDK for Google Analytics
-    implementation 'com.google.firebase:firebase-analytics'
-
-    // Declare the dependencies for any other desired Firebase products
-    // For example, declare the dependencies for Firebase Authentication and Cloud Firestore
-    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-auth'  //import auth and firestore
     implementation 'com.google.firebase:firebase-firestore'
 }
 

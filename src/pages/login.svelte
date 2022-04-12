@@ -95,5 +95,6 @@
       }
      
     }
+    $user_login_progress = "false";
   }
 </script>
