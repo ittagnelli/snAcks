@@ -1,0 +1,19 @@
+{
+	"appId": "com.ats.snacks",
+	"appName": "snAcks",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "www",
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 0
+		},
+		"FirebaseAuthentication": {
+			"skipNativeAuth": true,
+			"providers": [
+				"google.com"
+			]
+		}
+	},
+	"cordova": {}
+}
