@@ -1,5 +1,6 @@
 const N_SKEW_DAYS = 2;
-let festivi = [[14,4],[15,4],[16,4],[18,4],[19,4],[25,4], [2,6]]
+
+let festivi = [[14, 4], [15, 4], [16, 4], [18, 4], [19, 4], [25, 4], [2, 6]]
 
 function find_next_school_day(start) {
     let festivi_mese = [];

@@ -7,10 +7,14 @@
       <FoodItem type="{food.type}" subtype="{food.subtype}" img="{food.img}" price={food.price} bind:count={food.count} />
     {/each}
   </List>
-  <List>  
-    {#each calendar as day, i}
-      <ListItem checkbox bind:checked={day.selected} title={day.day} name="day{i+1}" id="day{i+1}" bind:disabled={day.disabled}></ListItem> 
-    {/each}
+  <List>
+    {#if calendar.length > 0}  
+      {#each calendar as day, i}
+        <ListItem checkbox bind:checked={day.selected} title={day.day} name="day{i+1}" id="day{i+1}" bind:disabled={day.disabled}></ListItem> 
+      {/each}
+    {:else}
+      <ListItem title="Servizio non disponibile!!!"></ListItem>
+    {/if}
   </List>
   
   <Snackbar class="flex-column snack" bind:active={snackbar} center timeout={3000}>
@@ -18,6 +22,7 @@
     <p id="snack_ok">Ordine effettuato correttamente!!</p>
   </Snackbar>
   
+  {#if calendar.length > 0}  
   <Row tag="p">
     <Col tag="span"></Col>
     <Col tag="span">
@@ -25,6 +30,9 @@
     </Col>
     <Col tag="span"></Col>
   </Row>
+  {/if}
+
+  
 
 </Page>
 
@@ -46,6 +54,7 @@ export let f7router;
 export let f7route;
 
 const N_ORDER_DAYS = 3;
+const LAST_DAY = 153
 
 let log = create_logger('home.svelte');
 let snackbar = false;
@@ -105,23 +114,31 @@ async function order_snack() {
   log.info("Order made to DB");
 }
 
+Date.prototype.dayOfYear= function(){
+    var j1= new Date(this);
+    j1.setMonth(0, 0);
+    return Math.round((this-j1)/8.64e7);
+}
+
 //init home environment to make orders
 async function init_home() {
   let days = [];
   calendar.length = 0;
   today = new Date();
-
-  days = calc_next_N_days(today, N_ORDER_DAYS);
-  days.forEach(async (day) =>  {
-    let can_order_by_date =  await get_orders_by_user_date($user_email, day);
-    let calendar_day = { 
-      selected: false,
-      day: day,
-      disabled: can_order_by_date == 0 ? false : true
-    };
-    calendar.push(calendar_day);
-    calendar = calendar;
-  });
+  
+  if (today.dayOfYear() < LAST_DAY) {
+    days = calc_next_N_days(today, N_ORDER_DAYS);
+    days.forEach(async (day) =>  {
+      let can_order_by_date =  await get_orders_by_user_date($user_email, day);
+      let calendar_day = { 
+        selected: false,
+        day: day,
+        disabled: can_order_by_date == 0 ? false : true
+      };
+      calendar.push(calendar_day);
+      calendar = calendar;
+    });
+  }
 }
 </script>
 
