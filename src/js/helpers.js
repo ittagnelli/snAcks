@@ -1,16 +1,16 @@
 const N_SKEW_DAYS = 2;
-let festivi = [[14,4],[15,4],[16,4],[18,4],[19,4],[25,4],[2,6]]
+let festivi = [[14,4],[15,4],[16,4],[18,4],[19,4],[25,4], [2,6]]
 
 function find_next_school_day(start) {
     let festivi_mese = [];
-    festivi.forEach(day => {
-        if(day[1] == start.getMonth()+1){
-            festivi_mese.push(day[0])
-        }
-    });
     do {
       start.setDate(start.getDate() + 1);
-    } while (start.getDay() == 0 || start.getDay() == 6 || festivi_mese.includes(start.getDate(),0))
+    } while (start.getDay() == 0 ||
+             start.getDay() == 6 ||
+             festivi.find(cal =>
+                 cal[0] == start.getDate() &&
+                 cal[1] == start.getMonth() + 1))
+    
     return start
 }
   
