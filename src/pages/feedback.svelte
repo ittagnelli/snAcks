@@ -26,7 +26,7 @@
 
     <Snackbar class="flex-column snack" bind:active={snackbar_ok} center timeout={3000}>
       <img src="icons/thumbs_up.png" width="50" alt="thumbsup" />
-      <p class="ok">Messaggio inviao correttamente.</p>
+      <p class="ok">Messaggio inviato correttamente.</p>
       <p class="ok">Grazie del tuo contributo!!</p>
     </Snackbar>
 
