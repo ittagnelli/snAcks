@@ -16,7 +16,7 @@
     "fillBars": false
   },
   "customBuild": false,
-  "pkg": "io.ats.snacks",
+  "pkg": "com.ats.snacks",
   "capacitor": {
     "platforms": [
       "ios",

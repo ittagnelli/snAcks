@@ -29,7 +29,7 @@ export async function read_doc(coll, docname) {
 
 export async function get_orders_by_email(email) {
     let orders = [];
-    const q = query(collection(db, "snacks"), where("email", "==", email), orderBy("date_order", "desc"), limit(5));
+    const q = query(collection(db, "snacks"), where("email", "==", email), orderBy("millis_order", "desc"), limit(5));
     const querySnapshot = await getDocs(q);
     
     querySnapshot.forEach((doc) => {
