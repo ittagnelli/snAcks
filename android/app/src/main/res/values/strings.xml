@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">snAcks</string>
+    <string name="title_activity_main">snAcks</string>
+    <string name="package_name">io.ats.snacks</string>
+    <string name="custom_url_scheme">io.ats.snacks</string>
+</resources>

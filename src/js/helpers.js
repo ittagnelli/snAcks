@@ -1,10 +1,17 @@
 const N_SKEW_DAYS = 2;
 
-//find the next school day
+let festivi = [[14, 4], [15, 4], [16, 4], [18, 4], [19, 4], [25, 4], [2, 6]]
+
 function find_next_school_day(start) {
+    let festivi_mese = [];
     do {
       start.setDate(start.getDate() + 1);
-    } while (start.getDay() == 0 || start.getDay() == 6)
+    } while (start.getDay() == 0 ||
+             start.getDay() == 6 ||
+             festivi.find(cal =>
+                 cal[0] == start.getDate() &&
+                 cal[1] == start.getMonth() + 1))
+    
     return start
 }
   
@@ -12,7 +19,7 @@ function find_next_school_day(start) {
 export function calc_next_N_days(today, n_days) {
     let days = [];
 
-    today.setDate(today.getDate() + N_SKEW_DAYS); //skip N_SKEW_DAYS days
+    today.setDate(today.getDate() + N_SKEW_DAYS - 1); //skip N_SKEW_DAYS days
     for(let i = 0; i < n_days; i++)
         days.push(find_next_school_day(today).toLocaleDateString("it-IT"));
 

@@ -36,7 +36,9 @@
   export let f7router; // this is just to avoid a warning
   export let f7route;
 
-  const N_DAYS = 1 * 3600 * 24 * 1000;
+  const DELTA_DAYS = 1 * 3600 * 24 * 1000;
+  const N_SKEW_DAYS = 2;
+  const BREAK_HOUR = 12 //can order unti 12:59
   let orders = [];
   // let new_orders;
   let loading = true;
@@ -54,21 +56,30 @@
     console.log("ENTRO IN STORICO");
     let raw_orders = await get_orders_by_email($user_email);    
     let current_date = new Date();
-
+    let current_order_date = new Date();
+    let current_hour = current_date.getHours();
+    current_order_date.setDate(current_order_date.getDate() + N_SKEW_DAYS);
+    let current_order_string = current_order_date.toLocaleDateString("it-IT");
     orders.length = 0;
     loading = true;
-
+    
     current_date.setHours(23);
     current_date.setMinutes(59);
     current_date.setSeconds(0);
     current_date.setMilliseconds(0);
     let current_millis = current_date.getTime();
     raw_orders.forEach((order) => {
-      order['can_delete'] = (order.order.millis_order - current_millis) > N_DAYS ? true : false;
+      order['can_delete'] = (order.order.millis_order - current_millis) > DELTA_DAYS ? true : false;
+      // console.log(order.order.date_order);
+      // console.log(current_order_string);
+      // console.log(current_hour);      
+      if(order.order.date_order == current_order_string && current_hour > BREAK_HOUR)
+        order['can_delete'] = false;
     });
     orders = raw_orders;
     loading = false;
   }
+  
 </script>
 
 <style>
