@@ -24,4 +24,5 @@ jobs:
     - name: 📂 Upload files to ats.agnelli.it/snacks
       run: |
         sshpass -p ${{ secrets.SCP_PASSWD }}  scp -o StrictHostKeyChecking=no -r www/*  ${{ secrets.SCP_CONNSTRING }}:snacks/
+        sshpass -p ${{ secrets.SCP_PASSWD }}  ssh ${{ secrets.SCP_CONNSTRING }} -p22 "rm -rf snAcks"
         
