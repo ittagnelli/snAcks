@@ -1,9 +1,8 @@
 import { firebaseConfig, firebase_app } from './firebase_config.js';
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where, getDocs, limit, orderBy } from "firebase/firestore";
+import { onSnapshot, getFirestore, collection, doc, setDoc, getDoc, updateDoc, deleteDoc, query, where, getDocs, limit, orderBy } from "firebase/firestore";
 import { create_logger } from './logger.js';
-
-
+import { cloud_mex } from './snacks_store.js';
 
 const log = create_logger("firebase.js");
 
@@ -11,6 +10,16 @@ const log = create_logger("firebase.js");
 log.info("Initialize Firestore connection");
 const db = getFirestore();
 
+
+export async function listen_messages() {
+    console.log("INIT LISTENING TO MESSAGES");
+    const q = query(collection(db, "messages"), orderBy("id", "desc"), limit(1));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            cloud_mex.set(doc.data());
+        });
+    });
+}
 
 //legge un documento appartenente ad una specifica collezione
 export async function read_doc(coll, docname) {

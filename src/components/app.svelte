@@ -25,6 +25,7 @@
   {:else}
     <View main class="safe-areas" url="/login/" />
   {/if}
+
   
 </App>
 
@@ -34,9 +35,8 @@
     f7ready,
     App,
     View,
-    Views,
     Toolbar,
-    Link
+    Views
   } from 'framework7-svelte';
 
   import { onMount } from 'svelte';
@@ -44,13 +44,26 @@
   import capacitorApp from '../js/capacitor-app';
   import routes from '../js/routes';
   import { user_authenticated, user_email, title_bar } from '../js/snacks_store.js';
-  import store from '../js/store'
+  import { listen_messages } from '../js/firebase.js';
+  import store from '../js/store';
+  
+  
   let provider = null;
   let auth = null;
   const device = getDevice();
 
-  $title_bar = "snAcks v2.1";
+  $title_bar = "snAcks v2.2";
 
+  $: {
+    //console.log($notify_mex);
+    console.log("APP SVELTE");
+    console.log($user_authenticated);
+    if ($user_authenticated == "true") {
+      console.log("UTENTE AUTENTICATO");
+      listen_messages();
+    }
+  }
+ 
   let f7params = {
     name: 'snAcks', // App name
     theme: 'auto', // Automatic theme detection

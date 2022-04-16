@@ -21,6 +21,8 @@
     <img src="icons/thumbs_up.png" width="50" alt="thumbsup" />
     <p id="snack_ok">Ordine effettuato correttamente!!</p>
   </Snackbar>
+
+  <Notify />
   
   {#if calendar.length > 0}  
   <Row tag="p">
@@ -31,15 +33,12 @@
     <Col tag="span"></Col>
   </Row>
   {/if}
-
-  
-
 </Page>
 
 <script>
 
 import { Page, Navbar, Toolbar, Block, BlockTitle, List, ListItem, Row, Col, Button } from 'framework7-svelte';
-import { user_email, user_authenticated, title_bar } from '../js/snacks_store.js';
+import { user_email, user_authenticated, title_bar, cloud_mex } from '../js/snacks_store.js';
 import { getAuth, GoogleAuthProvider,signOut, signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { read_doc, write_doc, get_orders_by_user_date } from '../js/firebase.js';
 import { create_logger } from '../js/logger.js';
@@ -48,6 +47,7 @@ import { food_list, resert_food_count, update_food_list } from '../js/food_list.
 import FoodItem from '../components/food_item.svelte';
 import { Snackbar} from 'svelte-materialify';
 import Nav from '../components/bar.svelte';
+import Notify from '../components/notify.svelte';
 import { calc_next_N_days } from '../js/helpers.js';
 
 export let f7router;

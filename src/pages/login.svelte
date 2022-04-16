@@ -25,11 +25,13 @@
   import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
   import { getAuth, GoogleAuthProvider, signInWithCredential,signOut, signInWithRedirect, getRedirectResult  } from 'firebase/auth';
   import { Capacitor } from '@capacitor/core'; 
+  
   export let f7router;
   export let f7route;
   const log = create_logger("login.svelte");
   let provider = null;
   let auth = null;
+
   onMount(async () => {
     log.info("Page Mounting");
     provider = new GoogleAuthProvider();
