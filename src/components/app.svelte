@@ -36,7 +36,8 @@
     App,
     View,
     Toolbar,
-    Views
+    Views,
+    Link
   } from 'framework7-svelte';
 
   import { onMount } from 'svelte';
