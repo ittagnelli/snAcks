@@ -1,5 +1,8 @@
 <App { ...f7params }>
   {#if $user_authenticated == "true"}
+  
+  <Notify />
+
   <Views tabs class="safe-areas">
     <Toolbar tabbar labels bottom>
       <Link tabLink="#view-home" tabLinkActive iconIos="f7:house_fill" iconAurora="f7:house_fill" iconMd="material:home" text="Home" />
@@ -25,8 +28,6 @@
   {:else}
     <View main class="safe-areas" url="/login/" />
   {/if}
-
-  
 </App>
 
 <script>
@@ -39,6 +40,8 @@
     Views,
     Link
   } from 'framework7-svelte';
+
+  import Notify from '../components/notify.svelte';
 
   import { onMount } from 'svelte';
   import { getDevice }  from 'framework7/lite-bundle';  
@@ -53,7 +56,7 @@
   let auth = null;
   const device = getDevice();
 
-  $title_bar = "snAcks v2.2";
+  $title_bar = "snAcks v2.3";
 
   $: {
     //console.log($notify_mex);
