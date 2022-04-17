@@ -22,8 +22,6 @@
     <p id="snack_ok">Ordine effettuato correttamente!!</p>
   </Snackbar>
 
-  <Notify />
-  
   {#if calendar.length > 0}  
   <Row tag="p">
     <Col tag="span"></Col>
@@ -47,7 +45,6 @@ import { food_list, resert_food_count, update_food_list } from '../js/food_list.
 import FoodItem from '../components/food_item.svelte';
 import { Snackbar} from 'svelte-materialify';
 import Nav from '../components/bar.svelte';
-import Notify from '../components/notify.svelte';
 import { calc_next_N_days } from '../js/helpers.js';
 
 export let f7router;
