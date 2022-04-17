@@ -3,7 +3,7 @@
     import { f7 } from 'framework7-svelte'
  
     $: {
-        if($cloud_mex.id != $last_mex_id) {
+        if($cloud_mex.id > $last_mex_id) {
             console.log("NEW CLOUD MEX");
             console.log($cloud_mex);
             setTimeout(function(){ notify($cloud_mex); }, 100);
