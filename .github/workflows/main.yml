@@ -26,4 +26,3 @@ jobs:
         sshpass -p ${{ secrets.SCP_PASSWD }}  ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_CONNSTRING }} -p22 "cd snacks && rm -rf *"
         sshpass -p ${{ secrets.SCP_PASSWD }}  scp -o StrictHostKeyChecking=no -r www/*  ${{ secrets.SCP_CONNSTRING }}:snacks/
         
-        
