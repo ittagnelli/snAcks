@@ -41,6 +41,7 @@ jobs:
         
     - name: 🔨 Upload snAcks on Google Play Store
       run: |
+        cd android
         echo -e ${{ secrets.PRIVATE_KEY}} >> key.txt
         node upload.js -c ${{ secrets.CLIENT_EMAIL }}
 
