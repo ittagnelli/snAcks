@@ -24,10 +24,10 @@ const apkup = new Apkup({
     private_key: private_key_from_file
   });
   
-  apkup.upload('app/release/app-release.aab', {
+  apkup.upload('app/build/outputs/bundle/release/app-release.aab', {
       releaseNotes: [
         {
-          language: 'it-IT',
+          language: 'en-US',
           text: release_notes
         }
       ]
