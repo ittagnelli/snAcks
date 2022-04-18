@@ -34,7 +34,7 @@ jobs:
     - name: 🔨 Build snAcks for Android
       run: |
         cd android
-        node update-gradle.js
+        node update_gradle.js
         ./gradlew :app:bundleRelease
         jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore ./sasy.jks app/release/app-release.aab upload -storepass ${{ secrets.KEYSTORE_PASS }}
         
