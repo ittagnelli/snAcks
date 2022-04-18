@@ -21,6 +21,7 @@ jobs:
         npm install
         npm run build
         npm run build-capacitor-android
+        npx cap sync
     
     - name: 📂 Upload files to ats.agnelli.it/snacks
       run: |
