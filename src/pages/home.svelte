@@ -53,8 +53,9 @@ import { calc_next_N_days } from '../js/helpers.js';
 export let f7router;
 export let f7route;
 
-const N_ORDER_DAYS = 3;
-const LAST_DAY = 153
+const N_ORDER_DAYS = 3; //how many days user can order
+const LAST_DAY = 153 //last school's day
+const BREAK_HOUR = 12 //can order unti 12:59
 
 let log = create_logger('home.svelte');
 let snackbar = false;
@@ -125,6 +126,10 @@ async function init_home() {
   let days = [];
   calendar.length = 0;
   today = new Date();
+
+  //cannot order after 14:00
+  if(today.getHours() > BREAK_HOUR)
+  today.setDate(today.getDate() + 1 );
   
   if (today.dayOfYear() < LAST_DAY) {
     days = calc_next_N_days(today, N_ORDER_DAYS);
