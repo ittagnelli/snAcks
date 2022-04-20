@@ -2,9 +2,8 @@
   <Navbar title={$title_bar} backLink="back"/>
   <div>
     <img src="icons/144x144.png"alt="logo" />
-    <h6>{$title_bar}</h6><br>
-
-    <BlockTitle>Applicazione sviluppata per ATS da:</BlockTitle>
+    <h5>{$title_bar.substring(6,15)}</h5> 
+    <h6>Applicazione sviluppata per ATS da:</h6>
     <Row>
       <Col width="10"></Col>
       <Col width="80">
@@ -14,28 +13,14 @@
       </Col>
       <Col width="10"></Col>
     </Row>
-
-    <!-- <h4>&nbsp;</h4> -->
     <img src="ats.png" width="128" alt="ats"/>
-    <!-- <h4>&nbsp;</h4> -->
     <p>Il codice sorgente è disponibile al seguente <a href="#" on:click={open}>link</a></p>
-
-    <!-- <List accordionList>
-    <ListItem accordionItem title="Privacy Policy">
-      <AccordionContent>
-        <Block>
-          <Policy></Policy>
-        </Block>
-      </AccordionContent>
-    </ListItem>
-</List> -->
 </Page>
 
 <script>
     import {Page, Block, BlockTitle, Navbar, Link, Button, List, ListItem, AccordionContent, Row, Col} from 'framework7-svelte'
     import { user_email, last_feedback, title_bar } from '../js/snacks_store.js';
     import Nav from '../components/bar.svelte'
-    // import Policy from '../components/policy.svelte'
     
     function open() {
         window.open("https://github.com/ittagnelli/snAcks")
@@ -44,7 +29,6 @@
 
 <style>
    .dev {
-     /* color: yellow; */
      font-size: 1.2rem;
    }
 
@@ -54,6 +38,11 @@
 
    img {
      margin-top: 20px;
-     margin-bottom: 20px;
+     margin-bottom: 0px;
+   }
+
+   h5 {
+     position: relative;
+     top: -20px;
    }
 </style>

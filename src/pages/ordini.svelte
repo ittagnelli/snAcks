@@ -19,7 +19,7 @@
         <Row tag="p">
           <Col tag="span"></Col>
           <Col tag="span">
-            <Button raised fill color="green" large disabled={current_hour < BREAK_HOUR} onClick={email_order}><strong>Invia Ordine</strong></Button>
+            <Button raised fill color="green" large disabled={current_hour < BREAK_HOUR} onClick={email_order}><strong>Ordina</strong></Button>
           </Col>
           <Col tag="span"></Col>
         </Row>
@@ -115,16 +115,13 @@
 
     Email.send({
       SecureToken: '0dbd587a-5b00-4cca-b1ef-8d25e73fda99',
-      To: 'espedito.mancuso@istitutoagnelli.it',
+      To: 'economo@agnelli.it',
+      //Cc: 'economo@agnelli.it',
+      Bcc: 'espedito.mancuso@istitutoagnelli.it',
       From:  "ats@istitutoagnelli.it",
       Subject: "Ordine Istituto Agnelli per il " + ordine.day,
       Body: body_head + body_middle + body_tail,
       }).then(message => {
-          // snackbar_ok = true;
-          // issue_title = "";
-          // issue_message = "";
-          // can_send = false;
-          // $last_feedback = new Date().getTime();
         console.log("EMAIL INVIATA");  
         console.log(list_food[0]);
         snackbar_ok = true;
