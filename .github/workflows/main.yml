@@ -20,9 +20,31 @@ jobs:
       run: |
         npm install
         npm run build
+        npm run build-capacitor-android
+        npx cap sync
     
     - name: 📂 Upload files to ats.agnelli.it/snacks
       run: |
         sshpass -p ${{ secrets.SCP_PASSWD }}  ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_CONNSTRING }} -p22 "cd snacks && rm -rf *"
         sshpass -p ${{ secrets.SCP_PASSWD }}  scp -o StrictHostKeyChecking=no -r www/*  ${{ secrets.SCP_CONNSTRING }}:snacks/
+    
+    - name: 🔨 Install Java JRE and JDK
+      run: |
+        sudo apt-get install default-jre openjdk-17-jdk-headless
+        
+    - name: 🔨 Build snAcks for Android
+      run: |
+        cd android
+        node update_gradle.js
+        ./gradlew :app:bundleRelease
+        jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore ./sasy.jks app/build/outputs/bundle/release/app-release.aab upload -storepass ${{ secrets.KEYSTORE_PASS }}
+        
+    - name: 🔨 Upload snAcks on Google Play Store
+      run: |
+        cd android
+        echo -e ${{ secrets.PRIVATE_KEY}} >> key.txt
+        node upload.js -c ${{ secrets.CLIENT_EMAIL }}
+
+
+        
         
