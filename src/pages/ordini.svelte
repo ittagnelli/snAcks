@@ -115,8 +115,8 @@
 
     Email.send({
       SecureToken: '0dbd587a-5b00-4cca-b1ef-8d25e73fda99',
-      To: 'economo@agnelli.it',
-      //Cc: 'economo@agnelli.it',
+      To: 'mirko.lotito@artedelcroissant.it',
+      Cc: 'economo@agnelli.it',
       Bcc: 'espedito.mancuso@istitutoagnelli.it',
       From:  "ats@istitutoagnelli.it",
       Subject: "Ordine Istituto Agnelli per il " + ordine.day,

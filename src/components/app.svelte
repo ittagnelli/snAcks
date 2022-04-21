@@ -56,7 +56,7 @@
   let auth = null;
   const device = getDevice();
 
-  $title_bar = "snAcks v2.4.1";
+  $title_bar = "snAcks v2.4.2";
 
   $: {
     //console.log($notify_mex);
