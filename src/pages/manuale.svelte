@@ -14,9 +14,7 @@
         <ListItem accordionItem title="Android"> 
             <AccordionContent>
                 <Block>
-                    <p>Se hai un Samsung, un Huawei, uno Xiaomi o un altro dispositivo Android visualizza il seguente video per creare un app sulla schermata home: </p>
-                    <p>E' preferibile effettuare l'installazione tramite il browser standard per Android: CHROME</p>
-                    <video src="android_video.mp4" controls></video>
+                    <p>Se hai un Samsung, un Huawei, uno Xiaomi o un altro dispositivo Android puoi scaricare snAcks dal Google Play Store al seguente link</p> <a class="external" target="_blank" href="https://play.google.com/store/apps/details?id=com.ats.snacks">https://play.google.com/store/apps/details?id=com.ats.snacks</a>
                 </Block>
             </AccordionContent>
         </ListItem> 

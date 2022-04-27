@@ -79,7 +79,7 @@
       const auth = getAuth();
       let cred = await signInWithCredential(auth, credential) //Login process
       const user = cred.user
-      if(user.email == "vivanco11.ac@gmail.com"){
+      if(user.email == "demosnacks1@gmail.com"){      //email for Google play tester
         $user_email = user.email
         $user_authenticated = "true";
       }else{
