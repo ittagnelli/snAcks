@@ -66,7 +66,7 @@ let provider = new GoogleAuthProvider();
 provider.setCustomParameters({
   hd: 'istitutoagnelli.it'
 });    
-let auth = getAuth();
+export const auth = getAuth();
 
 $: {
   //check whether a date has been selected and a food has been selected

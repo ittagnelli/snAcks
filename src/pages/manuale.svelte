@@ -14,7 +14,7 @@
         <ListItem accordionItem title="Android"> 
             <AccordionContent>
                 <Block>
-                    <p>Se hai un Samsung, un Huawei, uno Xiaomi o un altro dispositivo Android puoi scaricare snAcks dal Google Play Store al seguente link</p> <a class="external" target="_blank" href="https://play.google.com/store/apps/details?id=com.ats.snacks">https://play.google.com/store/apps/details?id=com.ats.snacks</a>
+                    <p>Se hai un Samsung, un Huawei, uno Xiaomi o un altro dispositivo Android puoi scaricare snAcks dal Google Play Store al seguente link</p> <a on:click={open} href="javascript:void(0);" >https://play.google.com/store/apps/details?id=com.ats.snacks</a>
                 </Block>
             </AccordionContent>
         </ListItem> 
@@ -85,8 +85,8 @@
       export let f7router; // this is just to avoid a warning
       export let f7route;
       
-      function open() {
-          window.open("https://github.com/ittagnelli/snAcks")
+      function open() {             //just for security reason(target=_blank)
+          window.open("https://github.com/ittagnelli/snAcks");
       }
   </script>
   
