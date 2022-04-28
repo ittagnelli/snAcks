@@ -15,12 +15,26 @@
     </Row>
     <img src="ats.png" width="128" alt="ats"/>
     <p>Il codice sorgente è disponibile al seguente <a href="#" on:click={open}>link</a></p>
+    <Block>
+    <Button raised fill onClick={logout} color="red"><strong>Logout</strong></Button>
+  </Block>
 </Page>
 
 <script>
     import {Page, Block, BlockTitle, Navbar, Link, Button, List, ListItem, AccordionContent, Row, Col} from 'framework7-svelte'
-    import { user_email, last_feedback, title_bar } from '../js/snacks_store.js';
-    import Nav from '../components/bar.svelte'
+    import { user_email, last_feedback, title_bar, user_authenticated, user_login_progress  } from '../js/snacks_store.js';
+    import Nav from '../components/bar.svelte';
+    import { getAuth, signOut } from 'firebase/auth';
+  
+    let auth = null;
+   
+    async function logout() {
+      auth = getAuth();
+      await signOut(auth);
+      $user_email = null; 
+      $user_authenticated = "false";
+      $user_login_progress = "false";
+    }
     
     function open() {
         window.open("https://github.com/ittagnelli/snAcks")

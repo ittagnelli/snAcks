@@ -61,12 +61,11 @@ let today; // current day
 let calendar = []; // calendar of orders
 let list_food = food_list; //list of food item 
 
-
-let provider = new GoogleAuthProvider();
-provider.setCustomParameters({
-  hd: 'istitutoagnelli.it'
-});    
-let auth = getAuth();
+// let provider = new GoogleAuthProvider();
+// provider.setCustomParameters({
+//   hd: 'istitutoagnelli.it'
+// });    
+// export const auth = getAuth();
 
 $: {
   //check whether a date has been selected and a food has been selected
@@ -84,8 +83,10 @@ $: {
 }
 
 async function order_snack() {
-  //get food with count > 0
-  let current_orders = food_list.filter(item => item.count > 0);
+  if(user_email == "demosnacks1@gmail.com"){
+    log.info("Google test account can't make order to DB");
+  }else{
+    let current_orders = food_list.filter(item => item.count > 0);
   
   //get selected order dates
   let current_calendar = calendar.filter(day => day.selected == true);
@@ -110,6 +111,7 @@ async function order_snack() {
   
   snackbar = true;
   log.info("Order made to DB");
+  }
 }
 
 Date.prototype.dayOfYear= function(){

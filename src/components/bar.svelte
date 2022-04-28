@@ -1,6 +1,7 @@
 <Navbar> 
   <NavLeft>
     <Link iconAurora="f7:info_circle" iconIos="f7:info_circle" iconMd="f7:info_circle" href="/about/"/>
+    
   </NavLeft>
   <NavTitle>
     {title}
@@ -14,4 +15,5 @@
     import { Navbar, NavTitle, NavRight, NavLeft, Link  } from 'framework7-svelte'
     import { title_bar } from '../js/snacks_store.js';
     export let title
+   
 </script>

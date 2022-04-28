@@ -14,9 +14,7 @@
         <ListItem accordionItem title="Android"> 
             <AccordionContent>
                 <Block>
-                    <p>Se hai un Samsung, un Huawei, uno Xiaomi o un altro dispositivo Android visualizza il seguente video per creare un app sulla schermata home: </p>
-                    <p>E' preferibile effettuare l'installazione tramite il browser standard per Android: CHROME</p>
-                    <video src="android_video.mp4" controls></video>
+                    <p>Se hai un Samsung, un Huawei, uno Xiaomi o un altro dispositivo Android puoi scaricare snAcks dal Google Play Store al seguente link</p> <a on:click={open} href="javascript:void(0);" >https://play.google.com/store/apps/details?id=com.ats.snacks</a>
                 </Block>
             </AccordionContent>
         </ListItem> 
@@ -87,8 +85,8 @@
       export let f7router; // this is just to avoid a warning
       export let f7route;
       
-      function open() {
-          window.open("https://github.com/ittagnelli/snAcks")
+      function open() {             //just for security reason(target=_blank)
+          window.open("https://play.google.com/store/apps/details?id=com.ats.snacks");
       }
   </script>
   
