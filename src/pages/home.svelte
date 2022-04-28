@@ -61,12 +61,11 @@ let today; // current day
 let calendar = []; // calendar of orders
 let list_food = food_list; //list of food item 
 
-
-let provider = new GoogleAuthProvider();
-provider.setCustomParameters({
-  hd: 'istitutoagnelli.it'
-});    
-export const auth = getAuth();
+// let provider = new GoogleAuthProvider();
+// provider.setCustomParameters({
+//   hd: 'istitutoagnelli.it'
+// });    
+// export const auth = getAuth();
 
 $: {
   //check whether a date has been selected and a food has been selected

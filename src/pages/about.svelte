@@ -22,15 +22,20 @@
 
 <script>
     import {Page, Block, BlockTitle, Navbar, Link, Button, List, ListItem, AccordionContent, Row, Col} from 'framework7-svelte'
-    import { user_email, last_feedback, title_bar, user_authenticated  } from '../js/snacks_store.js';
+    import { user_email, last_feedback, title_bar, user_authenticated, user_login_progress  } from '../js/snacks_store.js';
     import Nav from '../components/bar.svelte';
-    import { signOut } from 'firebase/auth';
-    import  auth  from './home.svelte';
+    import { getAuth, signOut } from 'firebase/auth';
+  
+    let auth = null;
+   
     async function logout() {
+      auth = getAuth();
+      await signOut(auth);
       $user_email = null; 
       $user_authenticated = "false";
-      await signOut(auth);
+      $user_login_progress = "false";
     }
+    
     function open() {
         window.open("https://github.com/ittagnelli/snAcks")
     }

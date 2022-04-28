@@ -38,8 +38,9 @@
     provider.setCustomParameters({
       hd: 'istitutoagnelli.it'
     });
+
     auth = getAuth();
-    if(Capacitor.getPlatform() == "web"){
+    if(Capacitor.getPlatform() == "web") {
       log.info("Welcome to snAcks PWA debug console")
       getRedirectResult(auth)
         .then(async function (result)  {
@@ -64,28 +65,25 @@
           log.error(error);
         }); 
       }
-
   });
     
-  
-
   async function signIn() {
     log.info("SIGIN");
     $user_login_progress = "true";
     if(Capacitor.getPlatform() == "web")
       signInWithRedirect(auth, provider);
-    else{
+    else {
       log.info("Logcat of snAcks authentication init")
       const result = await FirebaseAuthentication.signInWithGoogle();  //connection with Java SDK
       const credential = GoogleAuthProvider.credential(result.credential?.idToken); //put Java SDK token to JS SDK
       const auth = getAuth();
       let cred = await signInWithCredential(auth, credential) //Login process
       const user = cred.user
-      if(user.email == "demosnacks1@gmail.com"){      //email for Google play tester
+      if(user.email == "demosnacks1@gmail.com") {      //email for Google play tester
         $user_email = user.email
         $user_authenticated = "true";
         $user_login_progress = "false";
-      }else{
+      } else {
         if (user.email.split('@')[1] != "istitutoagnelli.it") {
           alert("Login non autorizzato, puoi registrarti solo con l'account istituzionale")
           log.error(`Unauthorized login by user ${user.email}`);
@@ -101,7 +99,6 @@
         }  
       }
      
-    }
-    
+    }    
   }
 </script>
