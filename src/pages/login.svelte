@@ -52,12 +52,14 @@
             await signOut(auth);
             $user_email = null; 
             $user_authenticated = "false";
+            $user_login_progress = "false";
           } else {
             log.info(`User ${user.email} correctly signed in`);
             $user_email = user.email; 
             $user_authenticated = "true";
+            $user_login_progress = "false";
           }  
-          $user_login_progress = "false";
+         
         }).catch((error) => {
           log.error(error);
         }); 
@@ -82,6 +84,7 @@
       if(user.email == "demosnacks1@gmail.com"){      //email for Google play tester
         $user_email = user.email
         $user_authenticated = "true";
+        $user_login_progress = "false";
       }else{
         if (user.email.split('@')[1] != "istitutoagnelli.it") {
           alert("Login non autorizzato, puoi registrarti solo con l'account istituzionale")
@@ -89,14 +92,16 @@
           await signOut(auth);
           $user_email = null; 
           $user_authenticated = "false";
+          $user_login_progress = "false";
         } else {
           log.info(`User ${user.email} correctly signed in`);
           $user_email = user.email; 
           $user_authenticated = "true";
+          $user_login_progress = "false";
         }  
       }
      
     }
-    $user_login_progress = "false";
+    
   }
 </script>
