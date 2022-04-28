@@ -86,7 +86,7 @@
       export let f7route;
       
       function open() {             //just for security reason(target=_blank)
-          window.open("https://github.com/ittagnelli/snAcks");
+          window.open("https://play.google.com/store/apps/details?id=com.ats.snacks");
       }
   </script>
   
