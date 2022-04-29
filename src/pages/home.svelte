@@ -61,11 +61,11 @@ let today; // current day
 let calendar = []; // calendar of orders
 let list_food = food_list; //list of food item 
 
-// let provider = new GoogleAuthProvider();
-// provider.setCustomParameters({
-//   hd: 'istitutoagnelli.it'
-// });    
-// export const auth = getAuth();
+let provider = new GoogleAuthProvider();
+provider.setCustomParameters({
+  hd: 'istitutoagnelli.it'
+});    
+let auth = getAuth();
 
 $: {
   //check whether a date has been selected and a food has been selected
@@ -128,7 +128,7 @@ async function init_home() {
 
   //cannot order after 14:00
   if(today.getHours() > BREAK_HOUR)
-  today.setDate(today.getDate() + 1 );
+    today.setDate(today.getDate() + 1 );
   
   if (today.dayOfYear() < LAST_DAY) {
     days = calc_next_N_days(today, N_ORDER_DAYS);

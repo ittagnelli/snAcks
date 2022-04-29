@@ -1,8 +1,9 @@
 <Page name="about" class="bg-color-white">
   <Navbar title={$title_bar} backLink="back"/>
   <div>
-    <img src="icons/144x144.png"alt="logo" />
-    <h5>{$title_bar.substring(6,15)}</h5> 
+    <img src="icons/logo_about.png" alt="logo" />
+    <h6>{$title_bar.substring(6,15)}</h6> 
+    <br>
     <h6>Applicazione sviluppata per ATS da:</h6>
     <Row>
       <Col width="10"></Col>
@@ -16,7 +17,13 @@
     <img src="ats.png" width="128" alt="ats"/>
     <p>Il codice sorgente è disponibile al seguente <a href="#" on:click={open}>link</a></p>
     <Block>
-    <Button raised fill onClick={logout} color="red"><strong>Logout</strong></Button>
+      <Row>
+        <Col></Col>
+        <Col>
+          <Button raised fill onClick={logout} color="red" large><strong>Logout</strong></Button>
+        </Col>
+        <Col></Col>
+      </Row>
   </Block>
 </Page>
 
@@ -24,13 +31,8 @@
     import {Page, Block, BlockTitle, Navbar, Link, Button, List, ListItem, AccordionContent, Row, Col} from 'framework7-svelte'
     import { user_email, last_feedback, title_bar, user_authenticated, user_login_progress  } from '../js/snacks_store.js';
     import Nav from '../components/bar.svelte';
-    import { getAuth, signOut } from 'firebase/auth';
-  
-    let auth = null;
-   
+ 
     async function logout() {
-      auth = getAuth();
-      await signOut(auth);
       $user_email = null; 
       $user_authenticated = "false";
       $user_login_progress = "false";
@@ -48,11 +50,6 @@
 
    div {
      text-align: center;
-   }
-
-   img {
-     margin-top: 20px;
-     margin-bottom: 0px;
    }
 
    h5 {
