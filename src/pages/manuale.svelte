@@ -55,6 +55,14 @@
                     </Block>
                 </AccordionContent>
             </ListItem>  
+            <ListItem accordionItem title="LogOut"> 
+                <AccordionContent>
+                    <Block>
+                        <p>Puoi effettuare il LogOut andando nella sezione About (icona in alto a sinistra).</p>
+                        <p>Premi il pulsante LogOut per uscire e autenticarsi nuovamente.</p>
+                    </Block>
+                </AccordionContent>
+            </ListItem>  
     </List>
 
     <BlockTitle medium>Ritiro</BlockTitle>

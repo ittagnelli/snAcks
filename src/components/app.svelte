@@ -56,10 +56,9 @@
   let auth = null;
   const device = getDevice();
 
-  $title_bar = "snAcks v2.5";
+  $title_bar = "snAcks v2.5.1";
 
   $: {
-    //console.log($notify_mex);
     console.log("APP SVELTE");
     console.log($user_authenticated);
     if ($user_authenticated == "true") {
