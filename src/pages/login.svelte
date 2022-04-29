@@ -53,12 +53,14 @@
             await signOut(auth);
             $user_email = null; 
             $user_authenticated = "false";
+            $user_login_progress = "false";
           } else {
             log.info(`User ${user.email} correctly signed in`);
             $user_email = user.email; 
             $user_authenticated = "true";
+            $user_login_progress = "false";
           }  
-          $user_login_progress = "false";
+         
         }).catch((error) => {
           log.error(error);
         }); 
@@ -87,13 +89,14 @@
           await signOut(auth);
           $user_email = null; 
           $user_authenticated = "false";
+          $user_login_progress = "false";
         } else {
           log.info(`User ${user.email} correctly signed in`);
           $user_email = user.email; 
           $user_authenticated = "true";
+          $user_login_progress = "false";
         }  
       }
     }  
-    $user_login_progress = "false";  
-  }
+    $user_login_progress = "false";    }
 </script>
