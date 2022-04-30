@@ -4,7 +4,7 @@
 	import OrderPerDay from './order_per_day.svelte';
 	import FoodDivision from './food_division.svelte';
 	import Number from './number.svelte';
-	import { total_orders, total_users } from './chart_helpers';
+	import { total_orders, total_users, total_items } from './chart_helpers';
 
 	//dev
 	// let orders = JSON.parse(localStorage.orders);
@@ -20,12 +20,13 @@
 </script>	
 
 <main>
-	<h1>snAcks Charts v1.0</h1>
+	<h1>snAcks Charts v1.1</h1>
 	
 	{#if orders.length > 0}
 		<div class="line-of-numbers">
-			<Number title="Ordini Totali" number={total_orders(orders)} />
 			<Number title="Utenti Totali" number={total_users(orders)} />
+			<Number title="Ordini Totali" number={total_orders(orders)} />
+			<Number title="Pezzi Totali" number={total_items(orders)} />
 		</div>
 
 		<OrderPerDay db_orders={orders} />	
@@ -65,6 +66,6 @@
 	}
 
 	.line-of-numbers {
-		column-count: 2;
+		column-count: 3;
 	}
 </style>

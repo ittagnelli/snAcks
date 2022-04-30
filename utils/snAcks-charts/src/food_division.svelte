@@ -6,7 +6,16 @@
 
 	onMount(async () => {
         let {labels, values} = food_division(db_orders);
-		chart("#chart_food_division", "pie", 350, labels, values, "Merende Preferite", ["#FF0000"]);
+        
+        let s1 = {
+            title: 'Merende Preferite',
+            type: 'pie',
+            values: values
+        }
+
+		// chart("#chart_food_division", "pie", 350, labels, values, "Merende Preferite", ["#FF0000"]);
+        chart("#chart_food_division", 'pie', 350, "Merende Preferite", ["#ff0000"], labels, s1, null);
+
 	});
 
     function food_division(orders) {
