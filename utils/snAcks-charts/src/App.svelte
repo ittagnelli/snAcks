@@ -20,7 +20,7 @@
 </script>	
 
 <main>
-	<h1>snAcks Charts</h1>
+	<h1>snAcks Charts v1.0</h1>
 	
 	{#if orders.length > 0}
 		<div class="line-of-numbers">
