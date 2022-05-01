@@ -5,7 +5,8 @@
 	import FoodDivision from './food_division.svelte';
 	import Number from './number.svelte';
 	import { total_orders, total_users, total_items } from './chart_helpers';
-	import { Circle3 } from 'svelte-loading-spinners'
+
+  import { Circle3 } from 'svelte-loading-spinners'
 
 	//dev
 	// let orders = JSON.parse(localStorage.orders);
@@ -22,6 +23,7 @@
 
 <main>
 	<h1>snAcks Charts v1.1.1</h1>
+
 	
 	{#if orders.length > 0}
 		<div class="line-of-numbers">
