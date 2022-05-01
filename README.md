@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/version-2.5.1-blue](https://img.shields.io/badge/version-2.5.1-blue)
+[Version](https://img.shields.io/badge/version-2.5.1-blue)
 
 # snAcks
 Applicazione per la prenotazione della colazione delle ore 10:00
