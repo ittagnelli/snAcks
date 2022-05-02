@@ -50,10 +50,6 @@ import { Snackbar} from 'svelte-materialify';
 import Nav from '../components/bar.svelte';
 import { calc_next_N_days, get_today } from '../js/helpers.js';
 
-async function get_time_from_server(){
-   
-  }
-  get_time_from_server();  
 export let f7router;
 export let f7route;
 

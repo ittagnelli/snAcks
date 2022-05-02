@@ -1,5 +1,5 @@
 const N_SKEW_DAYS = 2;
-const TIME_SERVER = "http://worldtimeapi.org/api/timezone/Europe/Rome";
+const TIME_SERVER = "https://worldtimeapi.org/api/timezone/Europe/Rome";
 let festivi = [[14, 4], [15, 4], [16, 4], [18, 4], [19, 4], [25, 4], [2, 6]]
 
 function find_next_school_day(start) {
