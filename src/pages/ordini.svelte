@@ -46,7 +46,7 @@
   import { get_orders_by_date } from '../js/firebase.js';
   import Nav from '../components/bar.svelte';
   import FoodItem from '../components/food_item.svelte';
-  import { calc_next_N_days } from '../js/helpers.js';
+  import { calc_next_N_days, get_today } from '../js/helpers.js';
   import { Snackbar} from 'svelte-materialify';
 
   export let f7router; // this is just to avoid a warning
@@ -65,16 +65,17 @@
   let snackbar_ok = false;
 
   async function calculate_total_orders() {
-    current_hour = new Date().getHours();
+    let today = await get_today();
+    current_hour = new Date(today).getHours();
     list_food.length = 0;
     days.length = 0;
     loading = true;
 
-    current_order_date = new Date();
+    current_order_date = new Date(today);
     current_order_date.setDate(current_order_date.getDate() + N_SKEW_DAYS);
     let current_order_string = current_order_date.toLocaleDateString("it-IT");
     
-    days = calc_next_N_days(new Date(), N_ORDER_DAYS);
+    days = calc_next_N_days(new Date(today), N_ORDER_DAYS);
     for(const day of days) {
       let orders = await get_orders_by_date(day); 
       list_food.push({day: day, can_order: current_order_string == day,orders: orders});

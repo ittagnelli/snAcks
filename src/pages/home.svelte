@@ -13,7 +13,10 @@
         <ListItem checkbox bind:checked={day.selected} title={day.day} name="day{i+1}" id="day{i+1}" bind:disabled={day.disabled}></ListItem> 
       {/each}
     {:else}
-      <ListItem title="Servizio non disponibile!!!"></ListItem>
+      <!-- <ListItem title="Servizio non disponibile!!!"></ListItem> -->
+      <Block strong class="text-align-center">
+        <Preloader color="multi" size={60}></Preloader>
+      </Block>
     {/if}
   </List>
   
@@ -35,7 +38,7 @@
 
 <script>
 
-import { Page, Navbar, Toolbar, Block, BlockTitle, List, ListItem, Row, Col, Button } from 'framework7-svelte';
+import { Page, Navbar, Toolbar, Block, BlockTitle, List, ListItem, Row, Col, Button, Preloader } from 'framework7-svelte';
 import { user_email, user_authenticated, title_bar, cloud_mex } from '../js/snacks_store.js';
 import { getAuth, GoogleAuthProvider,signOut, signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { read_doc, write_doc, get_orders_by_user_date } from '../js/firebase.js';
@@ -45,7 +48,7 @@ import { food_list, resert_food_count, update_food_list } from '../js/food_list.
 import FoodItem from '../components/food_item.svelte';
 import { Snackbar} from 'svelte-materialify';
 import Nav from '../components/bar.svelte';
-import { calc_next_N_days } from '../js/helpers.js';
+import { calc_next_N_days, get_today } from '../js/helpers.js';
 
 export let f7router;
 export let f7route;
@@ -124,8 +127,8 @@ Date.prototype.dayOfYear= function(){
 async function init_home() {
   let days = [];
   calendar.length = 0;
-  today = new Date();
-
+  today  = await get_today();
+  
   //cannot order after 14:00
   if(today.getHours() > BREAK_HOUR)
     today.setDate(today.getDate() + 1 );

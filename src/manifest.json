@@ -1,6 +1,6 @@
 {
-  "name": "snAcks v2.5.1",
-  "short_name": "snAcks v2.5.1",
+  "name": "snacks v2.6.0",
+  "short_name": "snacks v2.6.0",
   "description": "Applicazione per la prenotazione della merenda delle 10.00",
   "icons": [
       {
@@ -9,7 +9,7 @@
         "sizes": "128x128"
       },
       {
-        "src": "../../snacks/icons/144x144.png",
+        "src": "../../snacks/icons/144x144.png", 
         "type": "image/png",
         "sizes": "144x144"
       },
