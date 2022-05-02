@@ -56,7 +56,7 @@
   let auth = null;
   const device = getDevice();
 
-  $title_bar = "snAcks v2.5.1";
+  $title_bar = "snAcks v2.5.1a";
 
   $: {
     console.log("APP SVELTE");

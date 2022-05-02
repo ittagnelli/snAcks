@@ -32,6 +32,7 @@
     import Nav from '../components/bar.svelte';
     import FoodItem from '../components/food_item.svelte';
     import Hash from '../components/hash.svelte';
+    import { get_today } from '../js/helpers';
 
     export let f7router; // this is just to avoid a warning
     export let f7route;
@@ -44,7 +45,7 @@
     async function get_today_order() {
       list_food.length = 0;
       loading = true;
-      today = new Date().toLocaleDateString("it-IT");
+      today = (await get_today()).toLocaleDateString("it-IT");
       let order = await get_order_by_user_date($user_email, today);
 
       if(order != null) 

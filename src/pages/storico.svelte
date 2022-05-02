@@ -31,8 +31,9 @@
   import { user_email, title_bar } from '../js/snacks_store.js';
   import FoodItem from '../components/food_item.svelte';
   import OrderItem from '../components/item_storico.svelte';
-  import Nav from '../components/bar.svelte'
-  
+  import Nav from '../components/bar.svelte';
+  import { get_today } from '../js/helpers';
+
   export let f7router; // this is just to avoid a warning
   export let f7route;
 
@@ -55,8 +56,8 @@
   async function get_orders() {
     console.log("ENTRO IN STORICO");
     let raw_orders = await get_orders_by_email($user_email);    
-    let current_date = new Date();
-    let current_order_date = new Date();
+    let current_date = await get_today();
+    let current_order_date = new Date(current_date);
     let current_hour = current_date.getHours();
     current_order_date.setDate(current_order_date.getDate() + N_SKEW_DAYS);
     let current_order_string = current_order_date.toLocaleDateString("it-IT");
