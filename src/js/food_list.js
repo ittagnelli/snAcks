@@ -2,7 +2,7 @@ export let food_list = [
     {
       id: 1,
       type: "Pizzetta",
-      subtype: "Margherita",
+      subtype: "Rossa",
       img: "pizzetta.png",
       price: 1,
       count: 0
