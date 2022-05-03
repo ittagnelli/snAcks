@@ -9,7 +9,7 @@
       <Link tabLink="#view-storico" iconIos="f7:clock" iconAurora="f7:clock" iconMd="f7:clock" text="Storico" />
       <Link tabLink="#view-ritiro" iconIos="f7:bag" iconAurora="f7:bag" iconMd="f7:bag" text="Ritiro" />
       <Link tabLink="#view-feedback" iconIos="f7:arrow_2_circlepath_circle" iconAurora="f7:arrow_2_circlepath_circle" iconMd="f7:arrow_2_circlepath_circle" text="Feedback" />
-      {#if $user_email == "economo@istitutoagnelli.it" || 
+      {#if $user_email == "luca.limongi@istitutoagnelli.it" || 
            $user_email == "espedito.mancuso@istitutoagnelli.it" ||
            $user_email == "andrea.canale@istitutoagnelli.it"}
         <Link tabLink="#view-ordini" iconIos="f7:cart" iconAurora="f7:cart" iconMd="f7:cart" text="Ordini" />
@@ -19,7 +19,7 @@
     <View id="view-storico" name="catalog" tab url="/storico/" />
     <View id="view-ritiro" name="ritiro" tab url="/ritiro/" />
     <View id="view-feedback" name="feedback" tab url="/feedback/" />
-    {#if $user_email == "economo@istitutoagnelli.it" || 
+    {#if $user_email == "luca.limongi@istitutoagnelli.it" || 
            $user_email == "espedito.mancuso@istitutoagnelli.it" ||
            $user_email == "andrea.canale@istitutoagnelli.it"}
       <View id="view-ordini" name="settings" tab url="/ordini/" />
@@ -56,7 +56,7 @@
   let auth = null;
   const device = getDevice();
 
-  $title_bar = "snAcks v2.7.0";
+  $title_bar = "snAcks v2.7.1";
 
   $: {
     console.log("APP SVELTE");
