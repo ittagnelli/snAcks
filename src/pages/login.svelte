@@ -83,7 +83,8 @@
         $user_email = user.email
         $user_authenticated = "true";
       } else {
-        if (user.email.split('@')[1] != "istitutoagnelli.it") {
+        if (user.email.split('@')[1] != "istitutoagnelli.it" ||
+            user.email.split('@')[1] != "agnelli.it") {
           alert("Login non autorizzato, puoi registrarti solo con l'account istituzionale")
           log.error(`Unauthorized login by user ${user.email}`);
           await signOut(auth);

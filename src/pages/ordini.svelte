@@ -15,11 +15,11 @@
               <FoodItem type="{item.type}" subtype="{item.subtype}" img="{item.img}" price={item.price} count={item.count} ro={true} />
           {/each}
         </List>
-        {#if i == 0 && food.can_order == true}
+        {#if i < 2 && food.can_order == true}
         <Row tag="p">
           <Col tag="span"></Col>
           <Col tag="span">
-            <Button raised fill color="green" large disabled={current_hour < BREAK_HOUR} onClick={email_order}><strong>Ordina</strong></Button>
+            <Button raised fill color="green" large disabled={current_hour < BREAK_HOUR} onClick={() => email_order(i)}><strong>Ordina</strong></Button>
           </Col>
           <Col tag="span"></Col>
         </Row>
@@ -52,7 +52,7 @@
   export let f7router; // this is just to avoid a warning
   export let f7route;
 
-  const N_ORDER_DAYS = 3;
+  const N_ORDER_DAYS = 4;
   const BREAK_HOUR = 12; //can order unti 12:59
   const N_SKEW_DAYS = 2;
   // let today;
@@ -75,19 +75,30 @@
     current_order_date.setDate(current_order_date.getDate() + N_SKEW_DAYS);
     let current_order_string = current_order_date.toLocaleDateString("it-IT");
     
-    days = calc_next_N_days(new Date(today), N_ORDER_DAYS);
+    //days = calc_next_N_days(new Date(today), N_ORDER_DAYS);
+    let start_date = new Date();
+    start_date.setDate(start_date.getDate() - 1);
+    days = calc_next_N_days(start_date, N_ORDER_DAYS);
     for(const day of days) {
       let orders = await get_orders_by_date(day); 
-      list_food.push({day: day, can_order: current_order_string == day,orders: orders});
+      // list_food.push({day: day, can_order: current_order_string == day,orders: orders});
+      list_food.push(
+        {
+          day: day, 
+          can_order: true,//current_order_string == day, 
+          orders: orders
+        });
     }   
 
     list_food = list_food;
     loading = false;
   }
 
-  function email_order() {
+  function email_order(idx) {
+    console.log("IDX", idx)
+
     snackbar_ok = false;
-    let ordine = list_food[0];
+    let ordine = list_food[idx];
 
     let body_head = `
     <b>Riepilogo Ordine per Istituto Agnelli per il giorno #giorno</b><br>
@@ -115,16 +126,16 @@
     `;
 
     Email.send({
-      SecureToken: '0dbd587a-5b00-4cca-b1ef-8d25e73fda99',
-      To: 'mirko.lotito@artedelcroissant.it',
-      Cc: 'economo@agnelli.it',
-      Bcc: 'espedito.mancuso@istitutoagnelli.it',
-      From:  "ats@istitutoagnelli.it",
-      Subject: "Ordine Istituto Agnelli per il " + ordine.day,
-      Body: body_head + body_middle + body_tail,
+        SecureToken: '0dbd587a-5b00-4cca-b1ef-8d25e73fda99',
+        To: 'mirko.lotito@artedelcroissant.it',
+        Cc: 'economo@agnelli.it',
+        Bcc: 'espedito.mancuso@istitutoagnelli.it',
+        From:  "ats@istitutoagnelli.it",
+        Subject: "Ordine Istituto Agnelli per il " + ordine.day,
+        Body: body_head + body_middle + body_tail,
       }).then(message => {
         console.log("EMAIL INVIATA");  
-        console.log(list_food[0]);
+        console.log(list_food[idx]);
         snackbar_ok = true;
       }, reason => {
         console.error(reason);
