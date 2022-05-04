@@ -1,0 +1,31 @@
+on:
+  push:
+    branches:
+      - main
+name: 🚀 Build and Deploy snAcks!
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.JS
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+      
+    - name: 🔨 Build snAcks
+      run: |
+        npm install
+        npm run build
+    
+    - name: 📂 Upload files to ats.agnelli.it/snacks
+      run: |
+        sshpass -p ${{ secrets.SCP_PASSWD }}  ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_CONNSTRING }} -p22 "cd snacks && rm -rf *"
+        sshpass -p ${{ secrets.SCP_PASSWD }}  scp -o StrictHostKeyChecking=no -r www/*  ${{ secrets.SCP_CONNSTRING }}:snacks/
+ 
+
+        
+        
