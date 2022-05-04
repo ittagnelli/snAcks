@@ -1,0 +1,44 @@
+on:
+  push:
+    branches:
+      - main
+name: 🚀 Build and Deploy snAcks!
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.JS
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+      
+    - name: 🔨 Build snAcks
+      run: |
+        npm install
+        npm run build-capacitor-android
+        npx cap sync
+        
+    - name: 🔨 Install Java JRE and JDK
+      run: |
+        sudo apt-get install default-jre openjdk-17-jdk-headless
+        
+    - name: 🔨 Build snAcks for Android
+      run: |
+        cd android
+        node update_gradle.js
+        ./gradlew :app:bundleRelease
+        jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore ./sasy.jks app/build/outputs/bundle/release/app-release.aab upload -storepass ${{ secrets.KEYSTORE_PASS }}
+        
+    - name: 🔨 Upload snAcks on Google Play Store
+      run: |
+        cd android
+        echo -e ${{ secrets.PRIVATE_KEY}} >> key.txt
+        node upload.js -c ${{ secrets.CLIENT_EMAIL }}
+
+
+        
+        
