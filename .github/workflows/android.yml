@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - main
-name: 🚀 Build and Deploy snAcks!
+name: 🚀 Build and Deploy snAcks on Play Store!
 jobs:
   play-store-deploy:
     name: 🎉 Deploy
