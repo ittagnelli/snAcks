@@ -4,7 +4,7 @@ on:
       - main
 name: 🚀 Build and Deploy snAcks!
 jobs:
-  web-deploy:
+  play-store-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
@@ -15,28 +15,20 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '16'
+        
+    - name: Setup JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
       
     - name: 🔨 Build snAcks
       run: |
         npm install
-        npm run build
         npm run build-capacitor-android
         npx cap sync
-    
-    - name: 📂 Upload files to ats.agnelli.it/snacks
-      run: |
-        sshpass -p ${{ secrets.SCP_PASSWD }}  ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_CONNSTRING }} -p22 "cd snacks && rm -rf *"
-        sshpass -p ${{ secrets.SCP_PASSWD }}  scp -o StrictHostKeyChecking=no -r www/*  ${{ secrets.SCP_CONNSTRING }}:snacks/
-    
-    - name: 🔨 Install Java JRE and JDK
-      run: |
-        sudo apt-get install default-jre openjdk-17-jdk-headless
-        
-    - name: 🔨 Build snAcks for Android
-      run: |
         cd android
         node update_gradle.js
-        ./gradlew :app:bundleRelease
+        ./gradlew :app:bundleRelease --stacktrace
         jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore ./sasy.jks app/build/outputs/bundle/release/app-release.aab upload -storepass ${{ secrets.KEYSTORE_PASS }}
         
     - name: 🔨 Upload snAcks on Google Play Store
