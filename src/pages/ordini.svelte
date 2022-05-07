@@ -15,11 +15,11 @@
               <FoodItem type="{item.type}" subtype="{item.subtype}" img="{item.img}" price={item.price} count={item.count} ro={true} />
           {/each}
         </List>
-        {#if i < 2 && food.can_order == true}
+        {#if food.can_order == true}
         <Row tag="p">
           <Col tag="span"></Col>
           <Col tag="span">
-            <Button raised fill color="green" large disabled={current_hour < BREAK_HOUR} onClick={() => email_order(i)}><strong>Ordina</strong></Button>
+            <Button raised fill color="green" large disabled={i == 0 ? false : current_hour < BREAK_HOUR} onClick={() => email_order(i)}><strong>Ordina</strong></Button>
           </Col>
           <Col tag="span"></Col>
         </Row>
@@ -53,14 +53,13 @@
   export let f7route;
 
   const N_ORDER_DAYS = 4;
-  const BREAK_HOUR = 12; //can order unti 12:59
+  const BREAK_HOUR = 14; //can order starting 14:00
   const N_SKEW_DAYS = 2;
   // let today;
   let list_food = [];
   let days = [];
   let loading = true;
   let current_hour;
-  let current_order_date;
   let current_order_string;
   let snackbar_ok = false;
 
@@ -71,25 +70,24 @@
     days.length = 0;
     loading = true;
 
-    current_order_date = new Date(today);
-    current_order_date.setDate(current_order_date.getDate() + N_SKEW_DAYS);
-    let current_order_string = current_order_date.toLocaleDateString("it-IT");
+    let valid_dates = [];
+    let week_end = today.getDay() == 0 || today.getDay() == 6; 
+    let monday = today.getDay() == 1;
     
-    //days = calc_next_N_days(new Date(today), N_ORDER_DAYS);
-    let start_date = new Date();
-    start_date.setDate(start_date.getDate() - 1);
-    days = calc_next_N_days(start_date, N_ORDER_DAYS);
+    if (!monday)
+      today.setDate(today.getDate() - 1);
+    else
+      today.setDate(today.getDate() - 3);
+    
+    days = calc_next_N_days(new Date(today), N_ORDER_DAYS);
+    if (!week_end)
+      valid_dates = days.slice(0,2);    
+    
     for(const day of days) {
       let orders = await get_orders_by_date(day); 
-      // list_food.push({day: day, can_order: current_order_string == day,orders: orders});
-      list_food.push(
-        {
-          day: day, 
-          can_order: true,//current_order_string == day, 
-          orders: orders
-        });
+      list_food.push({day: day, can_order: valid_dates.indexOf(day) >= 0, orders: orders});
     }   
-
+    
     list_food = list_food;
     loading = false;
   }
