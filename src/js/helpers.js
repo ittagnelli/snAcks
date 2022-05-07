@@ -16,10 +16,47 @@ function find_next_school_day(start) {
 }
   
 //calculate the next n_days school days a user can order
+/*
+The logic is the following, given the day of the week, every day shoudl
+return the followinf 3 days:
+M -> W, T, F
+T -> T, F, M
+w -> F, M, T
+T -> M, T, W
+F -> T, W, T
+S -> W, T, F
+S -> W, T, F
+
+In other words given the day of the week (Sunday = 0 ; Friday = 6)
+1 -> 3, 4, 5
+2 -> 4, 5, 1
+3 -> 5, 1, 2
+4 -> 1, 2, 3
+5 -> 2, 3, 4
+6 -> 3, 4, 5
+0 -> 3, 4, 5
+*/
 export function calc_next_N_days(today, n_days) {
     let days = [];
+    let skew;
 
-    today.setDate(today.getDate() + N_SKEW_DAYS - 1); //skip N_SKEW_DAYS days
+    switch(today.getDay()) {
+      case 1:
+      case 2:
+      case 3:
+        skew = N_SKEW_DAYS;
+        break;
+      case 4:
+      case 5:
+      case 6:
+        skew = N_SKEW_DAYS + 2;
+        break;
+      case 0:
+        skew = N_SKEW_DAYS + 1;
+        break;
+    }
+ 
+    today.setDate(today.getDate() + skew - 1); //skip N_SKEW_DAYS days
     for(let i = 0; i < n_days; i++)
         days.push(find_next_school_day(today).toLocaleDateString("it-IT"));
 
@@ -35,4 +72,5 @@ export async function get_today(){
     } else {
       return new Date()
     }
+    // return new Date("2022-05-09T14:01:00");
 }

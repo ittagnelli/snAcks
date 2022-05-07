@@ -55,7 +55,7 @@ export let f7route;
 
 const N_ORDER_DAYS = 3; //how many days user can order
 const LAST_DAY = 153 //last school's day
-const BREAK_HOUR = 12 //can order unti 12:59
+const BREAK_HOUR = 13 //can order unti 13:59
 
 let log = create_logger('home.svelte');
 let snackbar = false;
