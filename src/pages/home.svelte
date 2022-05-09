@@ -82,7 +82,7 @@ $: {
   list_food.forEach(food => {
     total_food += food.count;
   })
-  can_order &= (total_food > 0 ? true: false); 
+  can_order &= (total_food > 0 && total_food <= 5 ? true: false); 
 }
 
 async function order_snack() {
