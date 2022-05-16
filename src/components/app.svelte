@@ -56,7 +56,7 @@
   let auth = null;
   const device = getDevice();
 
-  $title_bar = "snAcks v2.7.5";
+  $title_bar = "snAcks v2.7.6";
 
   $: {
     console.log("APP SVELTE");
@@ -96,5 +96,8 @@
         capacitorApp.init(f7);
       }
     });
+
+    //init email service
+    emailjs.init('0dYmP6olVTA2_hgJT');
   })
 </script>

@@ -3,21 +3,22 @@
 	import { read_coll } from './firebase';
 	import OrderPerDay from './order_per_day.svelte';
 	import FoodDivision from './food_division.svelte';
+	import OrderPerUser from './order_per_user.svelte';
 	import Number from './number.svelte';
 	import { total_orders, total_users, total_items } from './chart_helpers';
 
   import { Circle3 } from 'svelte-loading-spinners'
 
 	//dev
-	// let orders = JSON.parse(localStorage.orders);
+	let orders = JSON.parse(localStorage.orders);
 	
 	//prod
-	let orders = [];// = read_coll("snacks");
+	// let orders = [];// = read_coll("snacks");
 
 	
 	onMount(async () => {
 		//prod
-		orders = await read_coll("snacks");	
+		// orders = await read_coll("snacks");	
 	});
 </script>	
 
@@ -26,14 +27,15 @@
 
 	
 	{#if orders.length > 0}
-		<div class="line-of-numbers">
+		<!-- <div class="line-of-numbers">
 			<Number title="Utenti Totali" number={total_users(orders)} />
 			<Number title="Ordini Totali" number={total_orders(orders)} />
 			<Number title="Pezzi Totali" number={total_items(orders)} />
-		</div>
+		</div> -->
 
-		<OrderPerDay db_orders={orders} />	
-		<FoodDivision db_orders={orders} />	
+		<!-- <OrderPerDay db_orders={orders} />	
+		<FoodDivision db_orders={orders} />	 -->
+		<OrderPerUser db_orders={orders} />
 	{:else}
 		<div class="spinner">
 			<Circle3 size="160" color="#FF3E00" unit="px" duration="2s"></Circle3>

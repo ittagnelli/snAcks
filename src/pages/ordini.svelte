@@ -38,6 +38,12 @@
     <p class="ok">Ordine inviato correttamente!!!</p>
   </Snackbar>
   
+  <Snackbar class="flex-column snack" bind:active={snackbar_error} center timeout={3000}>
+    <img src="icons/thumbs_down.png" width="50" alt="thumbsup" />
+    <p class="error">Errore nell'invio dell'ordine!!! Riprova.</p>
+  </Snackbar>
+  
+
 </Page>
 
 <script>
@@ -62,6 +68,7 @@
   let current_hour;
   let current_order_string;
   let snackbar_ok = false;
+  let snackbar_error = false;
 
   async function calculate_total_orders() {
     let today = await get_today();
@@ -93,52 +100,48 @@
   }
 
   function email_order(idx) {
-    console.log("IDX", idx)
-
     snackbar_ok = false;
     let ordine = list_food[idx];
 
-    let body_head = `
-    <b>Riepilogo Ordine per Istituto Agnelli per il giorno #giorno</b><br>
-    <ul>`
-    .replace("#giorno", ordine.day);
-    
-    let body_middle = "";
-    for(const order of ordine.orders) {
-      body_middle = body_middle +  `
-      <li>
-        #type #subtype: #count
-      </li>`
-      .replace("#type", order.type)
-      .replace("#subtype", order.subtype)
-      .replace("#count", order.count);
-    }
+    let food_counters = {
+      '1': 0,
+      '2': 0,
+      '3': 0,
+      '4': 0,
+      '5': 0,
+      '6': 0,
+      '7': 0,
+      '8': 0,
+      '9': 0,
+      '10': 0,
+    };
 
-    let body_tail = `
-      </ul>
-      <p>Cordiali Saluti,</p>
-      <p>Luca</p>
-
-      <p><b>Messaggio generato automaticamente</b></p>
-      <p><b>Per cortesia, non rispondere a questo messaggio</b></p>
-    `;
-
-    Email.send({
-        SecureToken: '0dbd587a-5b00-4cca-b1ef-8d25e73fda99',
-        To: 'mirko.lotito@artedelcroissant.it',
-        Cc: 'economo@agnelli.it',
-        Bcc: 'espedito.mancuso@istitutoagnelli.it',
-        From:  "ats@istitutoagnelli.it",
-        Subject: "Ordine Istituto Agnelli per il " + ordine.day,
-        Body: body_head + body_middle + body_tail,
-      }).then(message => {
-        console.log("EMAIL INVIATA");  
-        console.log(list_food[idx]);
-        snackbar_ok = true;
-      }, reason => {
-        console.error(reason);
-      });
-    }
+    for(const order of ordine.orders) 
+      food_counters[order.id] = order.count
+      
+    emailjs.send('service_6eou3yj', 'template_y0lsgkh', {
+      dd: ordine.day.split('/')[0],
+      mm: ordine.day.split('/')[1],
+      yy: ordine.day.split('/')[2],
+      item1: food_counters[1],
+      item2: food_counters[2],
+      item3: food_counters[3],
+      item4: food_counters[4],
+      item5: food_counters[5],
+      item6: food_counters[6],
+      item7: food_counters[7],
+      item8: food_counters[8],
+      item9: food_counters[9],
+      item10: food_counters[10]
+    }).then(message => {
+      console.log("EMAIL INVIATA");
+      console.log(message);
+      snackbar_ok = true;
+    }).catch(error => {
+      console.log(error);
+      snackbar_error = true;
+    });      
+  }
 </script>
 
 <style>
@@ -171,5 +174,11 @@
     font-size: 1.1rem;
     color: #00f169;
   }
+
+  .error {
+    font-size: 1.1rem;
+    color: red;
+  }
+
 
 </style>
