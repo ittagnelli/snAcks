@@ -54,7 +54,7 @@ export let f7router;
 export let f7route;
 
 const N_ORDER_DAYS = 3; //how many days user can order
-const LAST_DAY = 153 //last school's day
+const LAST_DAY = 159; //last school's day
 const BREAK_HOUR = 13 //can order unti 13:59
 
 let log = create_logger('home.svelte');
@@ -132,18 +132,21 @@ async function init_home() {
   //cannot order after 14:00
   if(today.getHours() > BREAK_HOUR)
     today.setDate(today.getDate() + 1 );
-  
-  if (today.dayOfYear() < LAST_DAY) {
+    
+    if (today.dayOfYear() <= LAST_DAY) {
     days = calc_next_N_days(today, N_ORDER_DAYS);
     days.forEach(async (day) =>  {
-      let can_order_by_date =  await get_orders_by_user_date($user_email, day);
-      let calendar_day = { 
-        selected: false,
-        day: day,
-        disabled: can_order_by_date == 0 ? false : true
-      };
-      calendar.push(calendar_day);
-      calendar = calendar;
+        let daynum = new Date(day.split('/')[2], day.split('/')[1] - 1, day.split('/')[0]);
+        if (daynum.dayOfYear() <= LAST_DAY) {
+            let can_order_by_date =  await get_orders_by_user_date($user_email, day);
+            let calendar_day = { 
+                selected: false,
+                day: day,
+                disabled: can_order_by_date == 0 ? false : true
+            };
+            calendar.push(calendar_day);
+            calendar = calendar;
+        }
     });
   }
 }

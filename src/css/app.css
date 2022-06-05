@@ -45,3 +45,9 @@
 .theme-dark .navbar-large.navbar-transparent {
   --f7-navbar-large-title-text-color: #fff;
 }
+
+body {
+    position: relative; 
+    height: 100%; 
+    overflow: hidden;
+}

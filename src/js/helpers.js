@@ -60,6 +60,8 @@ export function calc_next_N_days(today, n_days) {
     for(let i = 0; i < n_days; i++)
         days.push(find_next_school_day(today).toLocaleDateString("it-IT"));
 
+    console.log("DAYSSSSSSSSs")
+    console.log(days)
     return days;
 }
 
@@ -72,5 +74,5 @@ export async function get_today(){
     } else {
       return new Date()
     }
-    // return new Date("2022-05-09T14:01:00");
+    //  return new Date("2022-06-06T12:01:00");
 }
